@@ -1,0 +1,201 @@
+#
+# DE4 development board: DEVICE EP4SGX230KF40C2  
+#
+
+#
+# IOBANK_VCCIO  
+#
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 1A
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 1C
+
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 2A
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 2C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 3A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 3B
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 3C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 4A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 4B
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 4C
+
+set_global_assignment -name IOBANK_VCCIO 3.0V -section_id 5A
+set_global_assignment -name IOBANK_VCCIO 3.0V -section_id 5C
+#NOTE: StratixIV I/O standards --> "The 3.3-V I/O standard 
+#      is supported using bank supply voltage (VCCIO) at 3.0V".
+
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 6A
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 6C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 7A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 7B
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 7C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 8A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 8B
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 8C
+
+#
+# Free running clocks
+#
+set_location_assignment PIN_AC35 -to OSC_50_B2
+set_location_assignment PIN_AV22 -to OSC_50_B3
+set_location_assignment PIN_AV19 -to OSC_50_B4
+set_location_assignment PIN_AC6  -to OSC_50_B5
+set_location_assignment PIN_AB6  -to OSC_50_B6
+set_location_assignment PIN_A19  -to OSC_50_B7
+set_instance_assignment -name IO_STANDARD "2.5 V" -to OSC_50_B2
+set_instance_assignment -name IO_STANDARD "1.8 V" -to OSC_50_B3
+set_instance_assignment -name IO_STANDARD "1.8 V" -to OSC_50_B4
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to OSC_50_B5
+set_instance_assignment -name IO_STANDARD "2.5 V" -to OSC_50_B6
+set_instance_assignment -name IO_STANDARD "1.8 V" -to OSC_50_B7
+
+set_location_assignment PIN_A21 -to GCLKIN
+set_instance_assignment -name IO_STANDARD "1.8 V" -to GCLKIN
+#Note: Clock source select SW7
+
+set_location_assignment PIN_AH19 -to GCLKOUT_FPGA
+set_instance_assignment -name IO_STANDARD "1.8 V" -to GCLKOUT_FPGA
+#Note: single ended output
+
+set_location_assignment PIN_B22 -to PLL_CLKIN_p
+set_location_assignment PIN_A22 -to PLL_CLKIN_n
+set_instance_assignment -name IO_STANDARD LVDS -to PLL_CLKIN_p
+#Note: Bank 8C --> external rterm 100ohm
+
+set_location_assignment PIN_B23 -to SMA_CLKIN_p
+set_location_assignment PIN_A23 -to SMA_CLKIN_n
+set_instance_assignment -name IO_STANDARD LVDS -to SMA_CLKIN_p
+#Note: Bank 8C --> external rterm 100ohm + SMA 50ohm single ended x 2
+
+#
+# GX REFCLK
+#
+# Note: all GX_TRANSCEIVER REFCLK inputs are configured as LVDS I/O standard;
+#       all unused REFCLK inputs are connected to GND 
+#
+#
+set_location_assignment PIN_AN38 -to PCIE_REFCLK_p
+set_location_assignment PIN_AN39 -to PCIE_REFCLK_n
+set_instance_assignment -name IO_STANDARD LVDS -to PCIE_REFCLK_p
+set_location_assignment PIN_AL38 -to REFCLK_L1_NOT_USED_p
+set_location_assignment PIN_AL39 -to REFCLK_L1_NOT_USED_n
+set_instance_assignment -name IO_STANDARD LVDS -to REFCLK_L1_NOT_USED_p
+#Note: Bank QL0 --> REFCLK_L1 not used (gnd)
+
+set_location_assignment PIN_AA38 -to REFCLK_L2_NOT_USED_p
+set_location_assignment PIN_AA39 -to REFCLK_L2_NOT_USED_n
+set_instance_assignment -name IO_STANDARD LVDS -to REFCLK_L2_NOT_USED_p
+set_location_assignment PIN_W38  -to REFCLK_L3_NOT_USED_p
+set_location_assignment PIN_W39  -to REFCLK_L3_NOT_USED_n
+set_instance_assignment -name IO_STANDARD LVDS -to REFCLK_L3_NOT_USED_p
+#Note: Bank QL1 --> REFCLK_L2/_L3 not used (gnd)
+
+set_location_assignment PIN_J38  -to HSMA_REFCLK_p
+set_location_assignment PIN_J39  -to HSMA_REFCLK_n
+set_instance_assignment -name IO_STANDARD LVDS -to HSMA_REFCLK_p
+set_location_assignment PIN_G38  -to REFCLK_L5_NOT_USED_p
+set_location_assignment PIN_G39  -to REFCLK_L5_NOT_USED_n
+set_instance_assignment -name IO_STANDARD LVDS -to REFCLK_L5_NOT_USED_p
+#Note: Bank QL2 --> REFCLK_L5 not used (gnd)
+
+set_location_assignment PIN_AN2  -to SATA_REFCLK_p
+set_location_assignment PIN_AN1  -to SATA_REFCLK_n
+set_instance_assignment -name IO_STANDARD LVDS -to SATA_REFCLK_p
+set_location_assignment PIN_AL2  -to REFCLK_R1_NOT_USED_p
+set_location_assignment PIN_AL1  -to REFCLK_R1_NOT_USED_n
+set_instance_assignment -name IO_STANDARD LVDS -to REFCLK_R1_NOT_USED_p
+#Note: Bank QR0 --> REFCLK_R1 not used (gnd)
+
+set_location_assignment PIN_AA2  -to HSMB_REFCLK_p
+set_location_assignment PIN_AA1  -to HSMB_REFCLK_n
+set_instance_assignment -name IO_STANDARD LVDS -to HSMB_REFCLK_p
+set_location_assignment PIN_W2   -to SMA_GXBCLK_p
+set_location_assignment PIN_W1   -to SMA_GXBCLK_n
+set_instance_assignment -name IO_STANDARD LVDS -to SMA_GXBCLK_p
+#Note: Bank QR1 --> all REFCLK connected
+
+set_location_assignment PIN_J2   -to REFCLK_R4_NOT_USED_p
+set_location_assignment PIN_J1   -to REFCLK_R4_NOT_USED_n
+set_instance_assignment -name IO_STANDARD LVDS -to REFCLK_R4_NOT_USED_p
+set_location_assignment PIN_G2   -to REFCLK_R5_NOT_USED_p
+set_location_assignment PIN_G1   -to REFCLK_R5_NOT_USED_n
+set_instance_assignment -name IO_STANDARD LVDS -to REFCLK_R5_NOT_USED_p
+#Note: Bank QR2 --> REFCLK_R4/_R5 not used (gnd)
+
+#
+# CPU_RESET button
+#
+set_location_assignment PIN_V34 -to CPU_RESET_n
+
+#
+# ENET interface
+#
+set_location_assignment PIN_T30  -to ETH_TX_p[0]
+set_location_assignment PIN_T31  -to ETH_TX_n[0]
+set_location_assignment PIN_U31  -to ETH_RX_p[0]
+set_location_assignment PIN_V31  -to ETH_RX_n[0]
+set_location_assignment PIN_R30  -to ETH_MDC[0]
+set_location_assignment PIN_W32  -to ETH_MDIO[0]
+set_location_assignment PIN_B20  -to ETH_INT_n[0]
+#set_location_assignment PIN_V29  -to ETH_RST_n[0]
+
+set_location_assignment PIN_R32  -to ETH_TX_p[1]
+set_location_assignment PIN_R33  -to ETH_TX_n[1]
+set_location_assignment PIN_N33  -to ETH_RX_p[1]
+set_location_assignment PIN_N34  -to ETH_RX_n[1]
+set_location_assignment PIN_J6   -to ETH_MDC[1]
+set_location_assignment PIN_J5   -to ETH_MDIO[1]
+set_location_assignment PIN_AG30 -to ETH_INT_n[1]
+#set_location_assignment PIN_V29  -to ETH_RST_n[1]
+
+set_location_assignment PIN_M32  -to ETH_TX_p[2]
+set_location_assignment PIN_L32  -to ETH_TX_n[2]
+set_location_assignment PIN_K34  -to ETH_RX_p[2]
+set_location_assignment PIN_K35  -to ETH_RX_n[2]
+set_location_assignment PIN_K6   -to ETH_MDC[2]
+set_location_assignment PIN_K5   -to ETH_MDIO[2]
+set_location_assignment PIN_AE30 -to ETH_INT_n[2]
+#set_location_assignment PIN_V29  -to ETH_RST_n[2]
+
+set_location_assignment PIN_P31  -to ETH_TX_p[3]
+set_location_assignment PIN_P32  -to ETH_TX_n[3]
+set_location_assignment PIN_J34  -to ETH_RX_p[3]
+set_location_assignment PIN_J35  -to ETH_RX_n[3]
+set_location_assignment PIN_N7   -to ETH_MDC[3]
+set_location_assignment PIN_N8   -to ETH_MDIO[3]
+set_location_assignment PIN_AE31 -to ETH_INT_n[3]
+#set_location_assignment PIN_V29  -to ETH_RST_n[3]
+
+# eth common reset
+set_location_assignment PIN_V29  -to ETH_RST_n
+
+#
+# USER DIP SWITCH (SW6, BANK 5C, LVCMOS/TTL 3.3V supported using VCCIO = 3.0V)
+#
+# Note: dip switch pullups connected to 3.0V --> SW-ON = GND, SW-OFF = VCC
+#
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SW[7]
+set_location_assignment PIN_AB13 -to SW[0]
+set_location_assignment PIN_AB12 -to SW[1]
+set_location_assignment PIN_AB11 -to SW[2]
+set_location_assignment PIN_AB10 -to SW[3]
+set_location_assignment PIN_AB9  -to SW[4]
+set_location_assignment PIN_AC8  -to SW[5]
+set_location_assignment PIN_AH6  -to SW[6]
+set_location_assignment PIN_AG6  -to SW[7]
+
+#
+# Max toggle rate for all i/o
+#
+#set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "200 MHz" -to *

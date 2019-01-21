@@ -1,0 +1,110 @@
+#
+# GTKRO board: DEVICE EP4SGX70F1152,EP4SGX110F1152
+#
+# (package codes: EP4SGX70HF35C2N, EP4SGX110HF35C2N)
+#
+
+#
+# IOBANK_VCCIO (ok) 
+#
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 1A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 1C
+
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 2A
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 2C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 3A
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 3C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 4A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 4C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 5A
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 5C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 6A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 6C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 7A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 7C
+
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 8A
+set_global_assignment -name IOBANK_VCCIO 1.8V -section_id 8C
+
+#
+# Free running clocks (ok)
+#
+set_location_assignment PIN_AA7 -to ClkIn50_Eth
+set_instance_assignment -name IO_STANDARD "2.5 V" -to ClkIn50_Eth
+
+#
+# CPU_RESET button (ok)
+#
+set_location_assignment PIN_G29 -to global_reset_n
+
+#
+# ENET interface (ok)
+#
+set_location_assignment PIN_W24  -to ETH_TX_p[0]
+set_location_assignment PIN_V25  -to ETH_TX_n[0]
+set_location_assignment PIN_AB27 -to ETH_RX_p[0]
+set_location_assignment PIN_AC28 -to ETH_RX_n[0]
+set_location_assignment PIN_N23  -to ETH_MDC[0]
+set_location_assignment PIN_M24  -to ETH_MDIO[0]
+set_location_assignment PIN_B9   -to ETH_INT_n[0]
+
+set_location_assignment PIN_AA26 -to ETH_TX_p[1]
+set_location_assignment PIN_AA27 -to ETH_TX_n[1]
+set_location_assignment PIN_AD26 -to ETH_RX_p[1]
+set_location_assignment PIN_AE27 -to ETH_RX_n[1]
+set_location_assignment PIN_G28  -to ETH_MDC[1]
+set_location_assignment PIN_J27  -to ETH_MDIO[1]
+set_location_assignment PIN_B21  -to ETH_INT_n[1]
+
+set_location_assignment PIN_Y22  -to ETH_TX_p[2]
+set_location_assignment PIN_W23  -to ETH_TX_n[2]
+set_location_assignment PIN_AC26 -to ETH_RX_p[2]
+set_location_assignment PIN_AD27 -to ETH_RX_n[2]
+set_location_assignment PIN_AD6  -to ETH_MDC[2]
+set_location_assignment PIN_AF7  -to ETH_MDIO[2]
+set_location_assignment PIN_J21  -to ETH_INT_n[2]
+
+set_location_assignment PIN_Y23  -to ETH_TX_p[3]
+set_location_assignment PIN_Y24  -to ETH_TX_n[3]
+set_location_assignment PIN_AF28 -to ETH_RX_p[3]
+set_location_assignment PIN_AE29 -to ETH_RX_n[3]
+set_location_assignment PIN_AM18 -to ETH_MDC[3]
+set_location_assignment PIN_AG6  -to ETH_MDIO[3]
+set_location_assignment PIN_D22  -to ETH_INT_n[3]
+
+# eth common reset
+set_location_assignment PIN_K26  -to ETH_RST_n
+
+#
+# USER DIP SWITCH (ok)
+#
+# Note: dip switch pullups connected to 1.8V --> SW-ON = GND, SW-OFF = VCC
+#
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[0]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[1]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[2]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[3]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[4]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[5]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[6]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ethSW[7]
+set_location_assignment PIN_J20  -to ethSW[0]
+set_location_assignment PIN_G20  -to ethSW[1]
+set_location_assignment PIN_A31  -to ethSW[2]
+set_location_assignment PIN_T24  -to ethSW[3]
+set_location_assignment PIN_K29  -to ethSW[4]
+set_location_assignment PIN_M29  -to ethSW[5]
+set_location_assignment PIN_N7   -to ethSW[6]
+set_location_assignment PIN_N29  -to ethSW[7]
+
+#
+# Max toggle rate for all i/o
+#
+#set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "200 MHz" -to *

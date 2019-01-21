@@ -1,0 +1,123 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use work.userlib.all;
+
+entity random is
+    generic ( width : integer :=  32; Ndet : integer := 4 );
+		
+port (
+      clk            : in std_logic;
+		reset          : in std_logic;
+      validateCHOCKE : out std_logic_vector (Ndet - 1 downto 0);   --output CHOCKE
+		validateERROR  : out std_logic_vector (Ndet - 1 downto 0)   --output ERROR
+    );
+end random;
+
+architecture rtl of random is
+signal random_num      :  std_logic_vector (width-1 downto 0);   --output vector            
+signal CHOCKEdetector :  std_logic_vector (Ndet - 1 downto 0);
+signal ERRORdetector  :  std_logic_vector (Ndet - 1 downto 0);
+type FSM_chocke_t is (S0,S1,S2,S3,S4,S5,S6);
+signal state: FSM_chocke_t;
+
+begin
+	ran1:process(clk)
+		variable rand_temp : std_logic_vector(width-1 downto 0):="100000000000000000000000000000000";
+		variable temp : std_logic := '0';
+			begin
+				if(rising_edge(clk))  then --Create random numbers (one every clock hit);
+					temp := rand_temp(width-1) xor rand_temp(width-2);
+					rand_temp(width-1 downto 1) := rand_temp(width-2 downto 0);
+					rand_temp(0) := temp;
+				end if;	
+				random_num <= rand_temp;
+	end process;
+	
+process (clk, reset)
+	begin	
+	if reset = '1' then
+			state <= s0;
+		elsif (rising_edge(clk)) then
+			case state is
+				when s0=>
+					if UINT(random_num) < NDet then
+						state <= s1;
+					elsif UINT(random_num) =15 then
+						state <= s2;
+					end if;
+				when s1=>
+					if UINT(random_num) < NDet then
+						state <= s1;
+					else
+						state <= s2;
+					end if;
+				when s2=>
+					if UINT(random_num)    = 4 then
+					state <=S3;
+					elsif UINT(random_num) = 5 then
+					state <= s4;
+					elsif UINT(random_num) = 6 then
+					state <= s5;
+					elsif UINT(random_num) = 7 then
+					state <= s6;
+					else
+						state <= s0;
+					end if;
+				when others =>
+						state <= s0;
+			end case;
+		end if;
+	end process;
+	
+	-- Output depends solely on the current state
+	process (state)
+	begin
+	
+		case state is
+			when s0 =>
+		   CHOCKEdetector <= (others =>'0');
+			ERRORdetector  <= (others =>'0');
+			when s1 =>
+				CHOCKEdetector(0) <= '1'  ;
+			   CHOCKEdetector(1) <= '0';
+			   CHOCKEdetector(2) <= '0';
+			   CHOCKEdetector(3) <= '0';
+
+				ERRORdetector  <= (others =>'0');
+			when s2 =>
+			CHOCKEdetector <= (others =>'0');
+			ERRORdetector  <= (others =>'0');
+			when s3 =>
+		   CHOCKEdetector(0) <= '1';
+			CHOCKEdetector(1) <= '1';
+			CHOCKEdetector(2) <= '1';
+			CHOCKEdetector(3) <= '1';
+			
+			ERRORdetector(0)  <= '1';
+			ERRORdetector(1)  <= '0';
+			ERRORdetector(2)  <= '0';
+			ERRORdetector(3)  <= '0';
+			when s4 =>
+		   CHOCKEdetector <= (others =>'0');
+			ERRORdetector(1)  <= '1';
+			ERRORdetector(0)  <= '0';
+			ERRORdetector(2)  <= '0';
+			ERRORdetector(3)  <= '0';
+			when s5 =>
+		   CHOCKEdetector <= (others =>'0');
+			ERRORdetector(2)  <= '1';
+			ERRORdetector(0)  <= '0';
+			ERRORdetector(1)  <= '0';
+			ERRORdetector(3)  <= '0';
+			when s6 =>
+		   CHOCKEdetector <= (others =>'0');
+			ERRORdetector(3)  <= '1';
+			ERRORdetector(0)  <= '0';
+			ERRORdetector(1)  <= '0';
+			ERRORdetector(2)  <= '0';
+			end case;
+	end process;
+	
+	validateCHOCKE<= CHOCKEdetector;
+	validateERROR <= ERRORdetector;
+end rtl;

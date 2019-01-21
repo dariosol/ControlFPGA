@@ -1,0 +1,65 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Setup 'OSCILL_50'
+Slack : 0.277
+TNS   : 0.000
+
+Type  : Setup 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 21.653
+TNS   : 0.000
+
+Type  : Setup 'altera_reserved_tck'
+Slack : 45.885
+TNS   : 0.000
+
+Type  : Hold 'OSCILL_50'
+Slack : 0.170
+TNS   : 0.000
+
+Type  : Hold 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.235
+TNS   : 0.000
+
+Type  : Hold 'altera_reserved_tck'
+Slack : 0.311
+TNS   : 0.000
+
+Type  : Recovery 'OSCILL_50'
+Slack : 0.946
+TNS   : 0.000
+
+Type  : Recovery 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 3.260
+TNS   : 0.000
+
+Type  : Recovery 'altera_reserved_tck'
+Slack : 95.110
+TNS   : 0.000
+
+Type  : Removal 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.248
+TNS   : 0.000
+
+Type  : Removal 'OSCILL_50'
+Slack : 0.437
+TNS   : 0.000
+
+Type  : Removal 'altera_reserved_tck'
+Slack : 0.513
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'OSCILL_50'
+Slack : 9.076
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 11.714
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.274
+TNS   : 0.000
+
+------------------------------------------------------------

@@ -1,0 +1,151 @@
+--DPRAM 32 bit for data coming from pc trigger
+--
+--**************************************************************
+--**************************************************************
+
+--**************************************************************
+--
+--
+-- Component Interface
+--
+--
+--**************************************************************
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+package component_ramdataCHOD is
+
+--**************************************************************
+--
+-- I/O section begin 
+--
+--**************************************************************
+
+--
+-- ramdataCHOD inputs (constant)
+--
+type ramdataCHOD_inputs_t is record
+
+   -- input list
+      rdaddress		:  STD_LOGIC_VECTOR (13 DOWNTO 0);
+		wraddress		:  STD_LOGIC_VECTOR (13	DOWNTO 0);
+		clock		   :  STD_LOGIC ;
+		data		   :  STD_LOGIC_VECTOR (63 DOWNTO 0);
+		wren		:  STD_LOGIC  ;
+		rden		:  STD_LOGIC  ;
+end record;
+
+--
+--  ramdataCHOD outputs (constant)
+--
+type ramdataCHOD_outputs_t is record
+
+   -- output list
+	q		:  STD_LOGIC_VECTOR (63	DOWNTO 0);
+
+end record;
+
+--**************************************************************
+--
+-- I/O section end
+--
+--**************************************************************
+
+--**************************************************************
+--**************************************************************
+
+--
+-- ramdataCHOD component common interface (constant)
+--
+type ramdataCHOD_t is record
+   inputs  : ramdataCHOD_inputs_t;
+   outputs : ramdataCHOD_outputs_t;
+end record;
+
+--
+-- ramdataCHOD vector type (constant)
+--
+type ramdataCHOD_vector_t is array(NATURAL RANGE <>) of ramdataCHOD_t;
+
+--
+--  ramdataCHOD component declaration (constant)
+--
+component ramdataCHOD
+port (
+   inputs  : in ramdataCHOD_inputs_t;
+   outputs : out ramdataCHOD_outputs_t
+);
+end component;
+
+--
+-- ramdataCHOD global signal to export params (constant)
+--
+signal component_ramdataCHOD : ramdataCHOD_t;
+
+end component_ramdataCHOD;
+
+--
+-- ramdataCHOD entity declaration
+--
+
+-- Local libraries (edit)
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.userlib.all;
+use work.component_ramdataCHOD.all;
+
+--  ramdataCHOD entity (constant)
+entity ramdataCHOD is
+port (
+   inputs  : in ramdataCHOD_inputs_t;
+   outputs : out ramdataCHOD_outputs_t
+);
+end ramdataCHOD;
+
+--**************************************************************
+--**************************************************************
+
+--**************************************************************
+--
+-- Component Architecture
+--
+--**************************************************************
+
+architecture rtl of ramdataCHOD is
+
+--
+-- altdpramDARIO component declaration (constant)
+--
+component altramdataCHOD
+port
+(
+      clock		: IN STD_LOGIC  := '1';
+		data		: IN STD_LOGIC_VECTOR (63 DOWNTO 0);
+		rdaddress		: IN STD_LOGIC_VECTOR (13 DOWNTO 0);
+		rden		: IN STD_LOGIC  := '1';
+		wraddress		: IN STD_LOGIC_VECTOR (13 DOWNTO 0);
+		wren		: IN STD_LOGIC  := '0';
+		q		: OUT STD_LOGIC_VECTOR (63 DOWNTO 0)
+);
+end component;
+
+begin
+
+--
+-- component port map (constant)
+--
+altramdataCHOD_inst : altramdataCHOD port map
+(
+   wraddress=>inputs.wraddress,
+	rdaddress=>inputs.rdaddress,
+	clock=>inputs.clock,
+	data=>inputs.data,
+	wren=>inputs.wren,
+	rden=>inputs.rden,
+	q =>outputs.q
+	);
+
+end rtl;

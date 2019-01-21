@@ -1,0 +1,56 @@
+include $(DEPS)
+include $(DEPEXE)
+
+#ROOTCFLAGS    = $(shell $(ROOTSYS)/bin/root-config --cflags)
+ROOTLIBS      = $(shell $(ROOTSYS)/bin/root-config --libs)
+ROOTGLIBS     = $(shell $(ROOTSYS)/bin/root-config --glibs)
+
+ROOTFLAGS = -m64;
+
+CXX = g++	
+CXXFLAGS = -g $(ROOTCFLAGS)
+DEPEND = $(CXX) -MM
+DEL = rm -rf
+
+STATIC := -static
+LDFLAGS = $(ROOTLIBS) -lMinuit $(LIBS)
+
+SOURCES           := $(wildcard *.cc)
+OBJECTS           := $(SOURCES:.cc=.o)
+EXESRC            := $(wildcard *.cpp)
+EXECUTABLES       := $(EXESRC:.cpp=.exe)
+DEPS              := $(SOURCES:.cc=.ccd)
+DEPEXE		  := $(EXESRC:.cpp=.d)
+
+all: $(EXECUTABLES) $(DEL) *.d $(DEL) *.dSYM
+
+%.exe : %.cpp $(DEPS) $(OBJECTS) %.d   
+	$(CXX) $(CXXFLAGS) $< $(OBJECTS) $(LDFLAGS) -o $@ 
+
+%.o : %.cc %.ccd
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+%.ccd : %.cc
+	$(DEPEND) $(CXXFLAGS) $< > $@
+
+%.d : 	%.cpp
+	$(DEPEND) $(CXXFLAGS) $< > $@
+	sed s/.o:/.exe:/g $@ >tmp.sed
+	mv tmp.sed $@
+
+clean: 	
+	@echo cleaning...
+	$(DEL) *.o
+	$(DEL) *.d 
+	$(DEL) *.ccd
+	$(DEL) *.exe
+	$(DEL) *.dSYM
+
+try:
+	@echo $@
+	@echo $(EXECUTABLES)
+	@echo CXXFLAGS
+	@echo $(CXXFLAGS)
+	@echo LIBS
+	@echo $(LIBS)
+

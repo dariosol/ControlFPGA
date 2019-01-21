@@ -1,0 +1,690 @@
+TimeQuest Timing Analyzer report for Controller
+Fri Jan 18 11:45:22 2019
+Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. SDC File List
+  5. Clocks
+  6. Fmax Summary
+  7. Timing Closure Recommendations
+  8. Setup Summary
+  9. Hold Summary
+ 10. Recovery Summary
+ 11. Removal Summary
+ 12. Minimum Pulse Width Summary
+ 13. Metastability Summary
+ 14. Board Trace Model Assignments
+ 15. Input Transition Times
+ 16. Signal Integrity Metrics (Slow 900mv 85c Model)
+ 17. Setup Transfers
+ 18. Hold Transfers
+ 19. Recovery Transfers
+ 20. Removal Transfers
+ 21. Report TCCS
+ 22. Report RSKM
+ 23. Unconstrained Paths Summary
+ 24. Clock Status Summary
+ 25. Unconstrained Input Ports
+ 26. Unconstrained Output Ports
+ 27. Unconstrained Input Ports
+ 28. Unconstrained Output Ports
+ 29. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2016  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++---------------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                               ;
++-----------------------+---------------------------------------------------------+
+; Quartus Prime Version ; Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition ;
+; Timing Analyzer       ; TimeQuest                                               ;
+; Revision Name         ; Controller                                              ;
+; Device Family         ; Stratix IV                                              ;
+; Device Name           ; EP4SGX230KF40C2                                         ;
+; Timing Models         ; Final                                                   ;
+; Delay Model           ; Slow 900mV 85C Model                                    ;
+; Rise/Fall Delays      ; Enabled                                                 ;
++-----------------------+---------------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.30        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;  11.4%      ;
+;     Processor 3            ;   9.5%      ;
+;     Processor 4            ;   9.2%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------+
+; SDC File List                                          ;
++--------------------+--------+--------------------------+
+; SDC File Path      ; Status ; Read at                  ;
++--------------------+--------+--------------------------+
+; Controller.out.sdc ; OK     ; Fri Jan 18 11:45:20 2019 ;
++--------------------+--------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                                                                                                                                                              ;
++------------------------------------------------------+-----------+---------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+-----------+--------------------------------------------------------+----------------------------------------------------------+
+; Clock Name                                           ; Type      ; Period  ; Frequency ; Rise  ; Fall   ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master    ; Source                                                 ; Targets                                                  ;
++------------------------------------------------------+-----------+---------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+-----------+--------------------------------------------------------+----------------------------------------------------------+
+; altera_reserved_tck                                  ; Base      ; 100.000 ; 10.0 MHz  ; 0.000 ; 50.000 ;            ;           ;             ;       ;        ;           ;            ;          ;           ;                                                        ; { altera_reserved_tck }                                  ;
+; OSCILL_50                                            ; Base      ; 20.000  ; 50.0 MHz  ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;           ;                                                        ; { OSCILL_50 }                                            ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; Generated ; 25.000  ; 40.0 MHz  ; 0.000 ; 12.500 ; 50.00      ; 5         ; 4           ;       ;        ;           ;            ; false    ; OSCILL_50 ; PLL_INST|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_INST|altpll_component|auto_generated|pll1|clk[0] } ;
++------------------------------------------------------+-----------+---------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+-----------+--------------------------------------------------------+----------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Fmax Summary                                                                               ;
++------------+-----------------+------------------------------------------------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
++------------+-----------------+------------------------------------------------------+------+
+; 84.93 MHz  ; 84.93 MHz       ; OSCILL_50                                            ;      ;
+; 121.51 MHz ; 121.51 MHz      ; altera_reserved_tck                                  ;      ;
+; 298.78 MHz ; 298.78 MHz      ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ;      ;
++------------+-----------------+------------------------------------------------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
+----------------------------------
+; Timing Closure Recommendations ;
+----------------------------------
+HTML report is unavailable in plain text report export.
+
+
++-------------------------------------------------------------------------------+
+; Setup Summary                                                                 ;
++------------------------------------------------------+--------+---------------+
+; Clock                                                ; Slack  ; End Point TNS ;
++------------------------------------------------------+--------+---------------+
+; OSCILL_50                                            ; 0.277  ; 0.000         ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 21.653 ; 0.000         ;
+; altera_reserved_tck                                  ; 45.885 ; 0.000         ;
++------------------------------------------------------+--------+---------------+
+
+
++------------------------------------------------------------------------------+
+; Hold Summary                                                                 ;
++------------------------------------------------------+-------+---------------+
+; Clock                                                ; Slack ; End Point TNS ;
++------------------------------------------------------+-------+---------------+
+; OSCILL_50                                            ; 0.170 ; 0.000         ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 0.235 ; 0.000         ;
+; altera_reserved_tck                                  ; 0.311 ; 0.000         ;
++------------------------------------------------------+-------+---------------+
+
+
++-------------------------------------------------------------------------------+
+; Recovery Summary                                                              ;
++------------------------------------------------------+--------+---------------+
+; Clock                                                ; Slack  ; End Point TNS ;
++------------------------------------------------------+--------+---------------+
+; OSCILL_50                                            ; 0.946  ; 0.000         ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 3.260  ; 0.000         ;
+; altera_reserved_tck                                  ; 95.110 ; 0.000         ;
++------------------------------------------------------+--------+---------------+
+
+
++------------------------------------------------------------------------------+
+; Removal Summary                                                              ;
++------------------------------------------------------+-------+---------------+
+; Clock                                                ; Slack ; End Point TNS ;
++------------------------------------------------------+-------+---------------+
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 0.248 ; 0.000         ;
+; OSCILL_50                                            ; 0.437 ; 0.000         ;
+; altera_reserved_tck                                  ; 0.513 ; 0.000         ;
++------------------------------------------------------+-------+---------------+
+
+
++-------------------------------------------------------------------------------+
+; Minimum Pulse Width Summary                                                   ;
++------------------------------------------------------+--------+---------------+
+; Clock                                                ; Slack  ; End Point TNS ;
++------------------------------------------------------+--------+---------------+
+; OSCILL_50                                            ; 9.076  ; 0.000         ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 11.714 ; 0.000         ;
+; altera_reserved_tck                                  ; 49.274 ; 0.000         ;
++------------------------------------------------------+--------+---------------+
+
+
+-------------------------
+; Metastability Summary ;
+-------------------------
+Worst-Case MTBF of Design is 1e+09 years or 3.15e+16 seconds.
+Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
+
+Number of Synchronizer Chains Found: 614
+Shortest Synchronizer Chain: 2 Registers
+Fraction of Chains for which MTBFs Could Not be Calculated: 0.049
+Worst Case Available Settling Time: 19.148 ns
+
+Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
+  - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 52.0
+Typical MTBF values are calculated based on the nominal silicon characteristics, at nominal operating conditions.
+  - Under typical conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 125.9
+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Board Trace Model Assignments                                                                                                                                                                                                                                                                                                                                                                                          ;
++---------------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; Pin                 ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
++---------------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; CHOKE[0]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[1]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[2]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[3]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[4]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[5]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[6]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[7]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[8]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[9]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[10]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[11]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[12]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CHOKE[13]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[0]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[1]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[2]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[3]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[4]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[5]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[6]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[7]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[8]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[9]            ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[10]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[11]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[12]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ERROR[13]           ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; BCRST               ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ECRST               ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; Led1                ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; SMA_clkout_p        ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_RST_n           ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[3]         ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[2]         ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[1]         ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[0]         ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_MDC[3]          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_MDC[2]          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_MDC[1]          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_MDC[0]          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_MDIO[3]         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_MDIO[2]         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_MDIO[1]         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ETH_MDIO[0]         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; altera_reserved_tdo ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; SMA_clkout_p(n)     ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[3](n)      ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[2](n)      ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[1](n)      ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
+; ETH_TX_p[0](n)      ; LVDS         ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; open                ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; 100 Ohm            ; n/a           ; n/a             ; n/a         ;
++---------------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+
+
++--------------------------------------------------------------------------+
+; Input Transition Times                                                   ;
++-----------------------+--------------+-----------------+-----------------+
+; Pin                   ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++-----------------------+--------------+-----------------+-----------------+
+; sw2                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; sw3                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; BUTTON0               ; 3.0-V PCI    ; 2400 ps         ; 2400 ps         ;
+; SW[0]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; SW[1]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; ETH_MDIO[3]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ETH_MDIO[2]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ETH_MDIO[1]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ETH_MDIO[0]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; resetn                ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; OSCILL_50             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; LTU_TRIGGER           ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; LTU0                  ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; LTU1                  ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; LTU2                  ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; LTU3                  ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; LTU4                  ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; LTU5                  ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; sw0                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ETH_RX_p[3]           ; LVDS         ; 2000 ps         ; 2000 ps         ;
+; ETH_RX_p[0]           ; LVDS         ; 2000 ps         ; 2000 ps         ;
+; SW[7]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; SW[6]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; SW[5]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; SW[2]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; SW[3]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; SW[4]                 ; 3.3-V LVCMOS ; 2400 ps         ; 2400 ps         ;
+; ETH_RX_p[2]           ; LVDS         ; 2000 ps         ; 2000 ps         ;
+; ETH_RX_p[1]           ; LVDS         ; 2000 ps         ; 2000 ps         ;
+; sw1                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; altera_reserved_tms   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; altera_reserved_tck   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; altera_reserved_tdi   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; altera_reserved_ntrst ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_DATA0~        ; 1.8 V        ; 1440 ps         ; 1440 ps         ;
+; ETH_RX_p[3](n)        ; LVDS         ; 2000 ps         ; 2000 ps         ;
+; ETH_RX_p[0](n)        ; LVDS         ; 2000 ps         ; 2000 ps         ;
+; ETH_RX_p[2](n)        ; LVDS         ; 2000 ps         ; 2000 ps         ;
+; ETH_RX_p[1](n)        ; LVDS         ; 2000 ps         ; 2000 ps         ;
++-----------------------+--------------+-----------------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 900mv 85c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
++---------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin                 ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; CHOKE[0]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[1]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[2]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[3]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[4]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[5]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[6]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[7]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[8]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; CHOKE[9]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[10]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; CHOKE[11]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; CHOKE[12]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; CHOKE[13]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; ERROR[0]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[1]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[2]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[3]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[4]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[5]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[6]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[7]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[8]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[9]            ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[10]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; ERROR[11]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; ERROR[12]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; ERROR[13]           ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; BCRST               ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.64e-06 V                   ; 2.8 V               ; -0.0492 V           ; 0.052 V                              ; 0.017 V                              ; 5.72e-10 s                  ; 4.64e-10 s                  ; Yes                        ; Yes                        ; 2.8 V                       ; 5.64e-06 V                  ; 2.8 V              ; -0.0492 V          ; 0.052 V                             ; 0.017 V                             ; 5.72e-10 s                 ; 4.64e-10 s                 ; Yes                       ; Yes                       ;
+; ECRST               ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 5.66e-06 V                   ; 2.8 V               ; -0.055 V            ; 0.001 V                              ; 0.016 V                              ; 5.21e-10 s                  ; 4.2e-10 s                   ; Yes                        ; Yes                        ; 2.8 V                       ; 5.66e-06 V                  ; 2.8 V              ; -0.055 V           ; 0.001 V                             ; 0.016 V                             ; 5.21e-10 s                 ; 4.2e-10 s                  ; Yes                       ; Yes                       ;
+; Led1                ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; SMA_clkout_p        ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 9.95e-11 s                  ; 9.86e-11 s                  ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 9.95e-11 s                 ; 9.86e-11 s                 ; Yes                       ; Yes                       ;
+; ETH_RST_n           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_TX_p[3]         ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
+; ETH_TX_p[2]         ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
+; ETH_TX_p[1]         ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
+; ETH_TX_p[0]         ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
+; ETH_MDC[3]          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_MDC[2]          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_MDC[1]          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_MDC[0]          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_MDIO[3]         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_MDIO[2]         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_MDIO[1]         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; ETH_MDIO[0]         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; altera_reserved_tdo ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-05 V                   ; 2.34 V              ; -0.00467 V          ; 0.205 V                              ; 0.034 V                              ; 4.02e-10 s                  ; 5.01e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-05 V                  ; 2.34 V             ; -0.00467 V         ; 0.205 V                             ; 0.034 V                             ; 4.02e-10 s                 ; 5.01e-10 s                 ; Yes                       ; Yes                       ;
+; SMA_clkout_p(n)     ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 9.95e-11 s                  ; 9.86e-11 s                  ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 9.95e-11 s                 ; 9.86e-11 s                 ; Yes                       ; Yes                       ;
+; ETH_TX_p[3](n)      ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
+; ETH_TX_p[2](n)      ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
+; ETH_TX_p[1](n)      ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
+; ETH_TX_p[0](n)      ; LVDS         ; 0 s                 ; 0 s                 ; 0.362 V                      ; -0.362 V                     ; -                   ; -                   ; -                                    ; -                                    ; 8.95e-11 s                  ; 8.9e-11 s                   ; Yes                        ; Yes                        ; 0.362 V                     ; -0.362 V                    ; -                  ; -                  ; -                                   ; -                                   ; 8.95e-11 s                 ; 8.9e-11 s                  ; Yes                       ; Yes                       ;
++---------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup Transfers                                                                                                                                           ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; From Clock                                           ; To Clock                                             ; RR Paths   ; FR Paths ; RF Paths ; FF Paths ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; altera_reserved_tck                                  ; altera_reserved_tck                                  ; 28131      ; 0        ; 56       ; 0        ;
+; OSCILL_50                                            ; altera_reserved_tck                                  ; false path ; 0        ; 0        ; 0        ;
+; altera_reserved_tck                                  ; OSCILL_50                                            ; false path ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; OSCILL_50                                            ; 6206584    ; 40       ; 136      ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; OSCILL_50                                            ; 4074       ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 11         ; 0        ; 0        ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 5683       ; 0        ; 0        ; 0        ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold Transfers                                                                                                                                            ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; From Clock                                           ; To Clock                                             ; RR Paths   ; FR Paths ; RF Paths ; FF Paths ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; altera_reserved_tck                                  ; altera_reserved_tck                                  ; 28131      ; 0        ; 56       ; 0        ;
+; OSCILL_50                                            ; altera_reserved_tck                                  ; false path ; 0        ; 0        ; 0        ;
+; altera_reserved_tck                                  ; OSCILL_50                                            ; false path ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; OSCILL_50                                            ; 6206584    ; 40       ; 136      ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; OSCILL_50                                            ; 4074       ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 11         ; 0        ; 0        ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 5683       ; 0        ; 0        ; 0        ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Recovery Transfers                                                                                                                                        ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; From Clock                                           ; To Clock                                             ; RR Paths   ; FR Paths ; RF Paths ; FF Paths ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; altera_reserved_tck                                  ; altera_reserved_tck                                  ; 3078       ; 0        ; 0        ; 0        ;
+; altera_reserved_tck                                  ; OSCILL_50                                            ; false path ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; OSCILL_50                                            ; 12594      ; 0        ; 0        ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; OSCILL_50                                            ; 600        ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 58         ; 0        ; 0        ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 62         ; 0        ; 0        ; 0        ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removal Transfers                                                                                                                                         ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; From Clock                                           ; To Clock                                             ; RR Paths   ; FR Paths ; RF Paths ; FF Paths ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+; altera_reserved_tck                                  ; altera_reserved_tck                                  ; 3078       ; 0        ; 0        ; 0        ;
+; altera_reserved_tck                                  ; OSCILL_50                                            ; false path ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; OSCILL_50                                            ; 12594      ; 0        ; 0        ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; OSCILL_50                                            ; 600        ; 0        ; 0        ; 0        ;
+; OSCILL_50                                            ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 58         ; 0        ; 0        ; 0        ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; 62         ; 0        ; 0        ; 0        ;
++------------------------------------------------------+------------------------------------------------------+------------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++--------------------------------+
+; Report TCCS                    ;
++--------------------------------+
+; LVDS Transmitter Constant TCCS ;
++--------------------------------+
+; 0.100                          ;
++--------------------------------+
+
+
+---------------
+; Report RSKM ;
+---------------
+No non-DPA dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths Summary                    ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 22    ; 22   ;
+; Unconstrained Input Port Paths  ; 324   ; 324  ;
+; Unconstrained Output Ports      ; 16    ; 16   ;
+; Unconstrained Output Port Paths ; 18    ; 18   ;
++---------------------------------+-------+------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Status Summary                                                                                                                  ;
++------------------------------------------------------+------------------------------------------------------+-----------+-------------+
+; Target                                               ; Clock                                                ; Type      ; Status      ;
++------------------------------------------------------+------------------------------------------------------+-----------+-------------+
+; OSCILL_50                                            ; OSCILL_50                                            ; Base      ; Constrained ;
+; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; PLL_INST|altpll_component|auto_generated|pll1|clk[0] ; Generated ; Constrained ;
+; altera_reserved_tck                                  ; altera_reserved_tck                                  ; Base      ; Constrained ;
++------------------------------------------------------+------------------------------------------------------+-----------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                                  ;
++---------------------+--------------------------------------------------------------------------------------+
+; Input Port          ; Comment                                                                              ;
++---------------------+--------------------------------------------------------------------------------------+
+; ETH_RX_p[0]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RX_p[1]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RX_p[2]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RX_p[3]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU0                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU1                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU2                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU3                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU4                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU5                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU_TRIGGER         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[4]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[5]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[6]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[7]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; altera_reserved_tdi ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; altera_reserved_tms ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; resetn              ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; sw0                 ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; sw1                 ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++---------------------+--------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                                  ;
++---------------------+---------------------------------------------------------------------------------------+
+; Output Port         ; Comment                                                                               ;
++---------------------+---------------------------------------------------------------------------------------+
+; BCRST               ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; CHOKE[0]            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ECRST               ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RST_n           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[0]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[0](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[1]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[1](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[2]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[2](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[3]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[3](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Led1                ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SMA_clkout_p        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SMA_clkout_p(n)     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; altera_reserved_tdo ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++---------------------+---------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                                  ;
++---------------------+--------------------------------------------------------------------------------------+
+; Input Port          ; Comment                                                                              ;
++---------------------+--------------------------------------------------------------------------------------+
+; ETH_RX_p[0]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RX_p[1]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RX_p[2]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RX_p[3]         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU0                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU1                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU2                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU3                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU4                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU5                ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LTU_TRIGGER         ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[4]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[5]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[6]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[7]               ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; altera_reserved_tdi ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; altera_reserved_tms ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; resetn              ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; sw0                 ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; sw1                 ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++---------------------+--------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                                  ;
++---------------------+---------------------------------------------------------------------------------------+
+; Output Port         ; Comment                                                                               ;
++---------------------+---------------------------------------------------------------------------------------+
+; BCRST               ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; CHOKE[0]            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ECRST               ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_RST_n           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[0]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[0](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[1]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[1](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[2]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[2](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[3]         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; ETH_TX_p[3](n)      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Led1                ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SMA_clkout_p        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SMA_clkout_p(n)     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; altera_reserved_tdo ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++---------------------+---------------------------------------------------------------------------------------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime TimeQuest Timing Analyzer
+    Info: Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
+    Info: Processing started: Fri Jan 18 11:45:15 2019
+Info: Command: quartus_sta Controller -c Controller
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (332164): Evaluating HDL-embedded SDC commands
+    Info (332165): Entity altera_std_synchronizer
+        Info (332166): set_false_path -to [get_keepers {*altera_std_synchronizer:*|din_s1}]
+    Info (332165): Entity dcfifo_3gt1
+        Info (332166): set_false_path -from *rdptr_g* -to *ws_dgrp|dffpipe_ed9:dffpipe17|dffe18a* 
+        Info (332166): set_false_path -from *delayed_wrptr_g* -to *rs_dgwp|dffpipe_dd9:dffpipe12|dffe13a* 
+    Info (332165): Entity dcfifo_5lt1
+        Info (332166): set_false_path -from *rdptr_g* -to *ws_dgrp|dffpipe_re9:dffpipe16|dffe17a* 
+        Info (332166): set_false_path -from *delayed_wrptr_g* -to *rs_dgwp|dffpipe_qe9:dffpipe13|dffe14a* 
+    Info (332165): Entity dcfifo_lot1
+        Info (332166): set_false_path -from *rdptr_g* -to *ws_dgrp|dffpipe_1f9:dffpipe16|dffe17a* 
+        Info (332166): set_false_path -from *delayed_wrptr_g* -to *rs_dgwp|dffpipe_0f9:dffpipe13|dffe14a* 
+    Info (332165): Entity dcfifo_nkt1
+        Info (332166): set_false_path -from *rdptr_g* -to *ws_dgrp|dffpipe_jd9:dffpipe17|dffe18a* 
+        Info (332166): set_false_path -from *delayed_wrptr_g* -to *rs_dgwp|dffpipe_id9:dffpipe13|dffe14a* 
+    Info (332165): Entity dcfifo_slt1
+        Info (332166): set_false_path -from *rdptr_g* -to *ws_dgrp|dffpipe_ue9:dffpipe16|dffe17a* 
+        Info (332166): set_false_path -from *delayed_wrptr_g* -to *rs_dgwp|dffpipe_te9:dffpipe13|dffe14a* 
+    Info (332165): Entity dcfifo_vit1
+        Info (332166): set_false_path -from *rdptr_g* -to *ws_dgrp|dffpipe_gd9:dffpipe10|dffe11a* 
+        Info (332166): set_false_path -from *delayed_wrptr_g* -to *rs_dgwp|dffpipe_fd9:dffpipe6|dffe7a* 
+    Info (332165): Entity sld_hub
+        Info (332166): create_clock -name altera_reserved_tck [get_ports {altera_reserved_tck}] -period 10MHz   
+        Info (332166): set_clock_groups -asynchronous -group {altera_reserved_tck}
+Info (332104): Reading SDC File: 'Controller.out.sdc'
+Warning (332043): Overwriting existing clock: altera_reserved_tck
+Info (332097): The following timing edges are non-unate.  TimeQuest will assume pos-unate behavior for these edges in the clock network.
+    Info (332098): Cell: PLL_INST|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
+    Info (332098): Cell: ethlink_inst|PLL|altpll_refclk2_inst|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
+    Info (332098): Cell: ethlink_inst|\MAC:1:MAC|sgmii|alttse1_inst|altera_tse_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|pll  from: inclk[0]  to: observablevcoout
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332152): The following assignments are ignored by the derive_clock_uncertainty command
+Warning (332056): PLL cross checking found inconsistent PLL clock settings:
+    Warning (332056): Node: ethlink_inst|PLL|altpll_refclk2_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+    Warning (332056): Node: ethlink_inst|\MAC:1:MAC|sgmii|alttse1_inst|altera_tse_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|pll|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 8.000
+    Warning (332056): Node: ethlink_inst|\MAC:1:MAC|sgmii|alttse1_inst|altera_tse_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|pll|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 8.000
+Info (332171): The following clock uncertainty values are less than the recommended values that would be applied by the derive_clock_uncertainty command
+    Info (332172): Setup clock transfer from OSCILL_50 (Rise) to OSCILL_50 (Rise) has uncertainty 0.020 that is less than the recommended uncertainty 0.080
+    Info (332172): Hold clock transfer from OSCILL_50 (Rise) to OSCILL_50 (Rise) has uncertainty 0.020 that is less than the recommended uncertainty 0.080
+    Info (332172): Setup clock transfer from OSCILL_50 (Fall) to OSCILL_50 (Rise) has uncertainty 0.020 that is less than the recommended uncertainty 0.080
+    Info (332172): Hold clock transfer from OSCILL_50 (Fall) to OSCILL_50 (Rise) has uncertainty 0.020 that is less than the recommended uncertainty 0.080
+    Info (332172): Setup clock transfer from OSCILL_50 (Rise) to OSCILL_50 (Fall) has uncertainty 0.020 that is less than the recommended uncertainty 0.080
+    Info (332172): Hold clock transfer from OSCILL_50 (Rise) to OSCILL_50 (Fall) has uncertainty 0.020 that is less than the recommended uncertainty 0.080
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info (332146): Worst-case setup slack is 0.277
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.277               0.000 OSCILL_50 
+    Info (332119):    21.653               0.000 PLL_INST|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    45.885               0.000 altera_reserved_tck 
+Info (332146): Worst-case hold slack is 0.170
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.170               0.000 OSCILL_50 
+    Info (332119):     0.235               0.000 PLL_INST|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.311               0.000 altera_reserved_tck 
+Info (332146): Worst-case recovery slack is 0.946
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.946               0.000 OSCILL_50 
+    Info (332119):     3.260               0.000 PLL_INST|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    95.110               0.000 altera_reserved_tck 
+Info (332146): Worst-case removal slack is 0.248
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.248               0.000 PLL_INST|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.437               0.000 OSCILL_50 
+    Info (332119):     0.513               0.000 altera_reserved_tck 
+Info (332146): Worst-case minimum pulse width slack is 9.076
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.076               0.000 OSCILL_50 
+    Info (332119):    11.714               0.000 PLL_INST|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    49.274               0.000 altera_reserved_tck 
+Info (332114): Report Metastability: Found 614 synchronizer chains.
+    Info (332114): Worst-Case MTBF of Design is 1e+09 years or 3.15e+16 seconds.
+    Info (332114): Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
+
+    Info (332114): Number of Synchronizer Chains Found: 614
+    Info (332114): Shortest Synchronizer Chain: 2 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 0.049
+    Info (332114): Worst Case Available Settling Time: 19.148 ns
+    Info (332114): 
+    Info (332114): Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
+    Info (332114):   - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 52.0
+    Info (332114): Typical MTBF values are calculated based on the nominal silicon characteristics, at nominal operating conditions.
+    Info (332114):   - Under typical conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 125.9
+Info (332107): Report TCCS:
+    Info (332107): Maximum TCCS for all channels: 0.100
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 1431 megabytes
+    Info: Processing ended: Fri Jan 18 11:45:22 2019
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:08
+
+

@@ -1,0 +1,11 @@
+Trigger in 0: CHOD Time: 5be4c9 MUV Time 5be4c9
+Trigger in 0: CHOD Time: fb077a MUV Time fb077a
+Trigger in 0: CHOD Time: 111806b MUV Time 111806b
+Trigger in 0: CHOD Time: 152518f MUV Time 152518f
+Trigger in 0: CHOD Time: 18de857 MUV Time 18de857
+Trigger in 0: CHOD Time: 1957fe6 MUV Time 1957fe6
+Trigger in 0: CHOD Time: 1bec3c3 MUV Time 1bec3c3
+Trigger in 0: CHOD Time: 206adb0 MUV Time 206adb0
+Trigger in 0: CHOD Time: 22deaed MUV Time 22deaed
+Trigger in 0: CHOD Time: 238f32b MUV Time 238f32b
+Trigger in 0: CHOD Time: 23e4d00 MUV Time 23e4d00

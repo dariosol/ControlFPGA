@@ -1,0 +1,22 @@
+Fitter Status : Successful - Fri Jan 18 11:43:42 2019
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Standard Edition
+Revision Name : Controller
+Top-level Entity Name : Controller
+Family : Stratix IV
+Device : EP4SGX230KF40C2
+Timing Models : Final
+Logic utilization : 15 %
+    Combinational ALUTs : 15,867 / 182,400 ( 9 % )
+    Memory ALUTs : 32 / 91,200 ( < 1 % )
+    Dedicated logic registers : 21,244 / 182,400 ( 12 % )
+Total registers : 21244
+Total pins : 80 / 888 ( 9 % )
+Total virtual pins : 0
+Total block memory bits : 6,397,321 / 14,625,792 ( 44 % )
+DSP block 18-bit elements : 0 / 1,288 ( 0 % )
+Total GXB Receiver Channel PCS : 0 / 24 ( 0 % )
+Total GXB Receiver Channel PMA : 0 / 36 ( 0 % )
+Total GXB Transmitter Channel PCS : 0 / 24 ( 0 % )
+Total GXB Transmitter Channel PMA : 0 / 36 ( 0 % )
+Total PLLs : 3 / 8 ( 38 % )
+Total DLLs : 0 / 4 ( 0 % )
