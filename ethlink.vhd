@@ -929,7 +929,7 @@ begin
 	   r.MTPheader(index) :='0'; 
 	   if n.MAC(index).outputs.wready(FF_PORT)='1' and n.MAC(index).outputs.wfull(FF_PORT) ='0' then 
 	      n.MAC(index).inputs.wdata(FF_PORT)( 31 downto  0)   := ro.MTPeventNum(index);
-	      n.MAC(index).inputs.wdata(FF_PORT)( 39 downto  32)  := ro.MTPsourceSubID(index);   
+	      n.MAC(index).inputs.wdata(FF_PORT)( 39 downto  32)  := ro.MTPSourceSubIDSubID(index);   
 	      n.MAC(index).inputs.wdata(FF_PORT)(47  downto  40)  := (others =>'1');
 	      n.MAC(index).inputs.wdata(FF_PORT)(55  downto  48)  := SLV(UINT(ro.wordtoread(index)),8);
 	      n.MAC(index).inputs.wdata(FF_PORT)(63  downto  56)  := (others=>'1');
