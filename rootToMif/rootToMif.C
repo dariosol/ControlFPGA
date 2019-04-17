@@ -23,7 +23,7 @@ int rootToMif(TString file_path){
     TPrimitive* Primitive = new TPrimitive();
     TBranch *test = IRC->GetBranch("fPrimitive");
     test->SetAddress(&Primitive);
-    for (UInt_t iEntry=0; iEntry<0xFFFF; iEntry++) {
+    for (UInt_t iEntry=0; iEntry<0x7FFF; iEntry++) {
       IRC->GetEntry(iEntry);
       fprintf(mifDump,"%X : %.4X00%.2X%.8X;\n",iEntry,Primitive->GetPrimitiveID(),Primitive->GetFineTime(), Primitive->GetTimeStamp());
     }

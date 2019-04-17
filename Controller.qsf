@@ -2066,7 +2066,6 @@ set_global_assignment -name VHDL_FILE mac/ram2trigger.vhd
 set_global_assignment -name VHDL_FILE mac/ramdataCHOD.vhd
 set_global_assignment -name VHDL_FILE mac/ramdataMUV.vhd
 set_global_assignment -name VHDL_FILE mac/altramdataMUV.vhd
-set_global_assignment -name VHDL_FILE mac/altramdataCHOD.vhd
 set_global_assignment -name HEX_FILE primitiveCHOD.hex
 set_global_assignment -name HEX_FILE primitiveMUV.hex
 set_global_assignment -name HEX_FILE primitiveCHOD_1000.hex
