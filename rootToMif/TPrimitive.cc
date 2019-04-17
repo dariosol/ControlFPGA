@@ -7,7 +7,7 @@
 // --------------------------------------------------------------
 #include "Riostream.h"
 #include "TPrimitive.hh"
-#define ClockPeriod 500000
+#define ClockPeriod 24.951059536
 ClassImp(TPrimitive)
 
 TPrimitive::TPrimitive()
