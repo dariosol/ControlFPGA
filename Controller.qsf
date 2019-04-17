@@ -2081,5 +2081,5 @@ set_global_assignment -name VHDL_FILE Trigger_input.vhd
 set_global_assignment -name QIP_FILE mac/alttriggerfifo.qip
 set_global_assignment -name VHDL_FILE mac/triggerfifo.vhd
 set_global_assignment -name CDF_FILE ../../ethlink8PORTE/eth1DE4_versione17.2/ethlink/Chain3.cdf
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/Controller_auto_stripped.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

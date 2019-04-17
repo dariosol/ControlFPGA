@@ -169,7 +169,6 @@ type reglist_clk125_t is record
    MTPsourceSubID 	: vector8(0 to ethlink_NODES-1);
    MTPnum               : vector8(0 to ethlink_NODES-1);
    MTPLen               : vector16(0 to ethlink_NODES-1);
-   latencycounter       : vector32(0 to ethlink_NODES-1);
    counterdata_in       : vector8(0 to ethlink_NODES-1);
    readdataramaddressb  : vector15(0 to ethlink_NODES-1);
    sent                 : std_logic_vector(0 to ethlink_NODES-1);
@@ -181,7 +180,7 @@ type reglist_clk125_t is record
    outcounter           : vector16(0 to ethlink_NODES-1);
    hwaddress            : std_logic_vector(7 downto 0);
    eol                  : std_logic;
-
+   isEnd                : vector8(0 to ethlink_NODES-1);
 end record;
 constant reglist_clk125_default : reglist_clk125_t :=
 (
@@ -196,7 +195,6 @@ constant reglist_clk125_default : reglist_clk125_t :=
    MTPNum                 => (others=>"00000000"),
    MTPeventNum            => (others=>"00000000000000000000000000000001"),
    MTPLen                 => (others=>"0000000000000000"),
-   latencycounter         => (others=>"00000000000000000000000000000000"),
    outcounter             => (others=>"0000000000000000"),
    counter_256            => (others =>X"00000000"),
    sent                   => (others=>'0'),
@@ -206,7 +204,8 @@ constant reglist_clk125_default : reglist_clk125_t :=
    wena                   => (others => '0'),
    rena                   => (others => '0'),
    hwaddress              => "00000000",
-   eol => '0'
+   eol                    => '0',
+   isEnd                  => (others=>"00000000")
 );
 
 
@@ -704,28 +703,29 @@ begin
       when S0_0 => 
 	 r.counterdata_in(index)       := (others=>'0');
 	 r.counter_256(index)          := (others=>'0');
-	 r.FSMReadRam(index)           := S0;
 	 r.readdataramaddressb(index)  := (others =>'0');	
-	 r.latencycounter(index)       := (others=>'0');
-	 r.readdataramaddressb(index)  := (others =>'0');
 	 r.sumtimestamp(index)         := (others =>'0');
-	
+	 r.FSMReadRam(index)           := S0;
+         r.isEnd(index)                := (others =>'0');
       when S0 =>
 	
 	 if i.startData ='1' then  
-	    r.counter_256(index)    :=
-              SLV(UINT(ro.counter_256(index))+256,32);--6.4 us
+	    r.counter_256(index)    :=  SLV(UINT(ro.counter_256(index))+256,32);--6.4 us
 	    r.counterdata_in(index) := (others=>'0');
-	    r.FSMReadRam(index)     := S1;
-	 else	
-	    r.FSMReadRam(index) := S0;
-	    n.SENDFIFO(index).inputs.aclr :='1';
-	    r.readdataramaddressb(index)  := (others =>'0');
-	    r.latencycounter(index)       := (others =>'0');
-	    r.readdataramaddressb(index)  := (others =>'0');
-	    r.counterdata_in(index)       := (others =>'0');
-	    r.counter_256(index)          := (others =>'0');
-	    r.sumtimestamp(index)         := (others =>'0');
+            if(ro.isEnd(index) ="00000001") then
+              r.FSMReadRam(index)     := S0;
+             else 
+               r.FSMReadRam(index)     := S1;
+             end if;
+              
+	 else --EOB	
+           r.FSMReadRam(index) := S0;
+           r.isEnd(index)             := (others =>'0');
+           n.SENDFIFO(index).inputs.aclr :='1';
+           r.readdataramaddressb(index)  := (others =>'0');
+           r.counterdata_in(index)       := (others =>'0');
+           r.counter_256(index)          := (others =>'0');
+           r.sumtimestamp(index)         := (others =>'0');
 	end if;
  
       when S1 =>
@@ -736,59 +736,87 @@ begin
 	    end if;		 
 				
       when S2 =>
-	    r.FSMReadRam(index)    := S3;  
+            if i.startData ='1' then
+	       r.FSMReadRam(index) := S3;				
+	    else
+	       r.FSMReadRam(index)   := S0;
+	    end if;		 
    
 
       when S3=> --   32768 parole totali
 	    if i.startData ='1' then
-	       n.dataRAMCHOD.inputs.rdaddress(14 downto 0 ) := ro.readdataramaddressb(0);--
-	       n.dataRAMMUV.inputs.rdaddress(14 downto 0)   :=
-                 ro.readdataramaddressb(1);-- 2 clock per leggere 1 posizione
-	       r.FSMReadRam(index) := S4;  
+                n.dataRAMCHOD.inputs.rdaddress(14 downto 0 ) := ro.readdataramaddressb(0);--
+                n.dataRAMMUV.inputs.rdaddress(14 downto 0)   := ro.readdataramaddressb(1);-- 2 clock per leggere 1 posizione
+                r.FSMReadRam(index) := S4;  
 	    else
 	       r.readdataramaddressb(index) := (others=>'0');
 	       r.FSMReadRam(index) := S0_0;  
 	    end if;
  
-	when S4 =>
+           when S4 =>
+            
 	if i.startData ='1' then
 				
-	   if index =0 then
+          if index =0 then    
 	      if  UINT(ro.readdataramaddressb(0)) = 32767 then -- more than 6.4 us (256 clocks)					
 		 if  i.sw0 = '0' then 
-		    r.sumtimestamp(0) := SLV(UINT(ro.sumtimestamp(0))+UINT(X"00031000"),32);  
-		    
+                   r.sumtimestamp(0) := SLV(UINT(ro.sumtimestamp(0))  + UINT(X"00029d00"),32); --depending on the last word of the ram!
+                   if  SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0)) + UINT(ro.sumtimestamp(0)(31 downto 0)),32) < ro.counter_256(0) then -- more than 6.4 us (256 clocks)
+                     r.readdataramaddressb(0) := SLV(UINT(ro.readdataramaddressb(0)) + 1,15);				      
+                     r.counterdata_in(0) := SLV(UINT(ro.counterdata_in(0)) + 1 ,8); 
+                     n.SENDFIFO(0).inputs.data(63 downto 32) :=n.dataRAMCHOD.outputs.q(63 downto 32);
+                     n.SENDFIFO(0).inputs.data(31 downto 0) := SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(0)(31 downto 0)),32);
+                     n.SENDFIFO(0).inputs.wrreq := '1';
+                     r.FSMReadRam(0) := S3;
+                   else
+                     r.FSMReadRam(0) := S5;
+                   end if; --firstword
 		 elsif i.sw0 = '1' then
-		    r.sumtimestamp(0) := (others=>'0');
+                   r.sumtimestamp(0) := (others=>'0');
+                   r.FSMReadRam(0) := S5;
+                   r.isEnd(0) :="00000001";
 		 end if;
-	      end if; 	               
-							
-						 
-	      if  SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(0)(31 downto 0)),32) < ro.counter_256(0) then -- more than 6.4 us (256 clocks)					
-		 r.readdataramaddressb(0) :=SLV(UINT(ro.readdataramaddressb(0))+1,15);				      
-		 r.counterdata_in(0) := SLV(UINT(ro.counterdata_in(0))+1,8); 
-		 n.SENDFIFO(0).inputs.data(63 downto 32) :=n.dataRAMCHOD.outputs.q(63 downto 32);
-		 n.SENDFIFO(0).inputs.data(31 downto 0) := SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(0)(31 downto 0)),32);
-		 n.SENDFIFO(0).inputs.wrreq := '1';
-		 r.FSMReadRam(0) := S3;
+	       	               
+             else
+					 
+	      if  SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0)) + UINT(ro.sumtimestamp(0)(31 downto 0)),32) < ro.counter_256(0) then -- more than 6.4 us (256 clocks)
+                r.readdataramaddressb(0) := SLV(UINT(ro.readdataramaddressb(0)) + 1,15);				      
+                r.counterdata_in(0) := SLV(UINT(ro.counterdata_in(0)) + 1,8); 
+                n.SENDFIFO(0).inputs.data(63 downto 32) :=n.dataRAMCHOD.outputs.q(63 downto 32);
+                n.SENDFIFO(0).inputs.data(31 downto 0) := SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(0)(31 downto 0)),32);
+                n.SENDFIFO(0).inputs.wrreq := '1';
+                r.FSMReadRam(0) := S3;
 	      else
 		 r.FSMReadRam(0) := S5;
 	      end if; --firstword
+	   end if; --last word
 	   end if; --index 0
-	   
 					
 	   if index =1 then
 	      if  UINT(ro.readdataramaddressb(1)) = 32767 then -- more than 6.4 us (256 clocks)					
 		 if i.sw1= '0' then
-		    r.sumtimestamp(1) := SLV(UINT(ro.sumtimestamp(1))+UINT(X"00031000"),32);
+                   r.sumtimestamp(1) := SLV(UINT(ro.sumtimestamp(1)) + UINT(X"00030be3"),32);
+                  if SLV(UINT(n.dataRAMMUV.outputs.q(31 downto 0)) + UINT(ro.sumtimestamp(1)(31 downto 0)),32) < ro.counter_256(1) then -- more than 6.4 us (256 clocks)					
+                    r.readdataramaddressb(1) :=SLV(UINT(ro.readdataramaddressb(1)) + 1,15);
+                    r.counterdata_in(1) := SLV(UINT(ro.counterdata_in(1)) + 1,8); 
+                    n.SENDFIFO(1).inputs.data(63 downto 32) := n.dataRAMMUV.outputs.q(63 downto 32);
+                    n.SENDFIFO(1).inputs.data(31 downto 0) := SLV(UINT(n.dataRAMMUV.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(1)(31 downto 0)),32);
+                    n.SENDFIFO(1).inputs.wrreq := '1';
+                    r.FSMReadRam(1) := S3;
+                  else
+                    r.FSMReadRam(1) := S5;
+                  end if;
+                 
 		 elsif i.sw1 = '1' then 
-		    r.sumtimestamp(1) := (others=>'0');
+                   r.sumtimestamp(1) := (others=>'0');
+                   r.isEnd(1) :="00000001";
+                   r.FSMReadRam(1) := S5;  
 		 end if;
-	      end if; 
-	      
-						
-	      if SLV(UINT(n.dataRAMMUV.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(1)(31 downto 0)),32) < ro.counter_256(1) then -- more than 6.4 us (256 clocks)					
-		 r.readdataramaddressb(1) :=SLV(UINT(ro.readdataramaddressb(1))+1,15);
+
+              else
+	      				
+	      if SLV(UINT(n.dataRAMMUV.outputs.q(31 downto 0)) + UINT(ro.sumtimestamp(1)(31 downto 0)),32) < ro.counter_256(1) then -- more than 6.4 us (256 clocks)					
+		 r.readdataramaddressb(1) :=SLV(UINT(ro.readdataramaddressb(1)) + 1,15);
 		 r.counterdata_in(1) := SLV(UINT(ro.counterdata_in(1))+1,8); 
 		 n.SENDFIFO(1).inputs.data(63 downto 32) := n.dataRAMMUV.outputs.q(63 downto 32);
 		 n.SENDFIFO(1).inputs.data(31 downto 0) := SLV(UINT(n.dataRAMMUV.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(1)(31 downto 0)),32);
@@ -797,8 +825,8 @@ begin
 	      else
 		 r.FSMReadRam(1) := S5;
 	      end if; 
-	   end if; --index 1
-	   
+	   end if; --last word
+	   end if;--index 1
 	   
 	else --EOB
 	   r.FSMReadRam(index) := S0_0;  
@@ -817,7 +845,6 @@ begin
 	 when S6 =>
 	    if i.startData ='1' then  
 	       r.senddata(index) :='0';	   	
-	       r.latencycounter(index) :=(others=>'0');
 	       r.counterdata_in(index) :=(others=>'0');
 	       if ro.sent(index) ='1' then 		
 		  r.FSMReadRam(index) := S0;	
@@ -857,7 +884,7 @@ begin
    n.SENDFIFO(index).inputs.rdreq          :='0';
 --     
    r.MTPSourceID(index)       :=x"18";
-	r.MTPSourceSubID(index)    :=x"18";
+   r.MTPsourceSubID(index)    :=x"18";
 	
    -- Tx FF_PORT defaults
    n.MAC(index).inputs.wtxclr(FF_PORT)     := '0';
@@ -867,14 +894,15 @@ begin
    --SEND DATA TO DE4_0-----------------------------------
    n.MAC(index).inputs.wdestport(FF_PORT)  := SLV(2,4);
    if index =0 then
-      n.MAC(index).inputs.wdestaddr(FF_PORT)  := SLV(5,8);
+      n.MAC(index).inputs.wdestaddr(FF_PORT)  := SLV(5,8); -- data to second
+                                                           -- input of L0TP
    end if;
    if index =1 then
-      n.MAC(index).inputs.wdestaddr(FF_PORT)  := SLV(11,8);
+      n.MAC(index).inputs.wdestaddr(FF_PORT)  := SLV(11,8); --data to last
+                                                            --input of L0TP
    end if;
 	
 
-   --n.MAC(index).inputs.wframelen(FF_PORT)  := SLV(100, 11);
    n.MAC(index).inputs.wdata(FF_PORT)      := (others => '0');
    n.MAC(index).inputs.wreq(FF_PORT)       := '0';
    n.MAC(index).inputs.wena(FF_PORT)       := ro.wena(index);
@@ -893,9 +921,9 @@ begin
   case ro.FSMecho(index) is
    
 	when S0 =>
-      if i.startData ='1' then
+      if i.startData ='1' then 
          r.FSMecho(index) := S1;
-    	   r.counterdata(index) := (others =>'0'); --parole da scrivere nel MAC
+         r.counterdata(index) := (others =>'0'); --parole da scrivere nel MAC
          r.outcounter(index) :=SLV(UINT(ro.outcounter(index))-1,16);     
          r.sent(index):='0';	
 	   else
@@ -903,7 +931,7 @@ begin
 	      r.FSMecho(index) := S0;
 	      r.MTPeventNum(index) := ("00000000000000000000000000000001");
 	      r.sent(index):='0';	
-	      r.outcounter(index) :=SLV(799,16); --latenza. Ogni 320*20ns = 6400 ns spedisco una primitiva
+	      r.outcounter(index) :=SLV(799,16); --latenza. Ogni 800* 8 ns = 6400 ns spedisco una primitiva
      end if;
  
  when S1 =>
@@ -929,7 +957,7 @@ begin
 	   r.MTPheader(index) :='0'; 
 	   if n.MAC(index).outputs.wready(FF_PORT)='1' and n.MAC(index).outputs.wfull(FF_PORT) ='0' then 
 	      n.MAC(index).inputs.wdata(FF_PORT)( 31 downto  0)   := ro.MTPeventNum(index);
-	      n.MAC(index).inputs.wdata(FF_PORT)( 39 downto  32)  := ro.MTPSourceSubIDSubID(index);   
+	      n.MAC(index).inputs.wdata(FF_PORT)( 39 downto  32)  := ro.MTPSourceSubID(index);   
 	      n.MAC(index).inputs.wdata(FF_PORT)(47  downto  40)  := (others =>'1');
 	      n.MAC(index).inputs.wdata(FF_PORT)(55  downto  48)  := SLV(UINT(ro.wordtoread(index)),8);
 	      n.MAC(index).inputs.wdata(FF_PORT)(63  downto  56)  := (others=>'1');

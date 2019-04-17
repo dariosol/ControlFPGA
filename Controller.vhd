@@ -260,6 +260,7 @@ begin
         counter_INTERRUN <=(others =>'0');
         state <=run;
         s_readdata<='0';
+
         
       when run =>
         s_readdata<='0';
@@ -301,6 +302,7 @@ begin
       Led1  <='0';
       ECRST <='1';
       BCRST <='1';
+      
     when run =>
       s_RUN <= '1';
       Led1  <= '0';
