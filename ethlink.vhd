@@ -178,6 +178,8 @@ architecture rtl of ethlink is
     hwaddress           : std_logic_vector(7 downto 0);
     eol                 : std_logic;
     isEnd               : vector8(0 to ethlink_NODES-1);
+    tsH                 : std_logic_vector(23 downto 0); -- LSB timestamp
+    word_send           : std_logic;                     -- packet complete flag
   end record;
   constant reglist_clk125_default : reglist_clk125_t :=
     (
@@ -670,7 +672,7 @@ begin
         variable ro : in    reglist_clk125_t;
         variable o  : inout outputs_t;
         variable r  : inout reglist_clk125_t;
-        variable n  : inout netlist_t
+        variable n  : inout netlist_t;
         ) is
     begin
 
@@ -755,10 +757,29 @@ begin
                     if SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0)) + UINT(ro.sumtimestamp(0)(31 downto 0)), 32) < ro.counter_256(0) then  -- more than 6.4 us (256 clocks)
                       r.readdataramaddressb(0)                := SLV(UINT(ro.readdataramaddressb(0)) + 1, 15);
                       r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
-                      n.SENDFIFO(0).inputs.data(63 downto 32) := n.dataRAMCHOD.outputs.q(63 downto 32);
-                      n.SENDFIFO(0).inputs.data(31 downto 0)  := SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(0)(31 downto 0)), 32);
+
+                      if word_send = 0 then
+                        if tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then -- check if timestamp changed (LSB)
+                          n.SENDFIFO(0).inputs.data(63 downto 32) := n.dataRAMCHOD.outputs.q(63 downto 32);
+                          r.FSMReadRam(0)                         := S3;
+                        else
+                          n.SENDFIFO(0).inputs.data(63 downto 56) := (others => '0');
+                          n.SENDFIFO(0).inputs.data(55 downto 32) := n.dataRAMCHOD.outputs.q(31 downto 8)); --LSB timestamp
+                          r.FSMReadRam(0)                         := S4;
+                          tsH                                     := n.dataRAMCHOD.outputs.q(31 downto 8) -- update timestamp
+                        word_send := 1; --send another word to complete the package
+                      else
+                        if tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then
+                          n.SENDFIFO(0).inputs.data(31 downto 0)  := n.dataRAMCHOD.outputs.q(63 downto 32);
+                          r.FSMReadRam(0)                         := S3;
+                        else
+                          n.SENDFIFO(0).inputs.data(63 downto 56) := (others => '0');
+                          n.SENDFIFO(0).inputs.data(55 downto 32) := n.dataRAMCHOD.outputs.q(31 downto 8)); --LSB timestamp
+                          r.FSMReadRam(0)                         := S4;
+                          tsH                                     := n.dataRAMCHOD.outputs.q(31 downto 8) -- update timestamp
+                        word_send := 0;
+                      end if;
                       n.SENDFIFO(0).inputs.wrreq              := '1';
-                      r.FSMReadRam(0)                         := S3;
                     else
                       r.FSMReadRam(0) := S5;
                     end if;  --firstword
@@ -773,10 +794,29 @@ begin
                   if SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0)) + UINT(ro.sumtimestamp(0)(31 downto 0)), 32) < ro.counter_256(0) then  -- more than 6.4 us (256 clocks)
                     r.readdataramaddressb(0)                := SLV(UINT(ro.readdataramaddressb(0)) + 1, 15);
                     r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
-                    n.SENDFIFO(0).inputs.data(63 downto 32) := n.dataRAMCHOD.outputs.q(63 downto 32); --primitiveID
-                    n.SENDFIFO(0).inputs.data(31 downto 0)  := SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0))+UINT(ro.sumtimestamp(0)(31 downto 0)), 32); --reserved/fine/timestamp
+
+                    if word_send = 0 then
+                      if tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then -- check if timestamp changed (LSB)
+                        n.SENDFIFO(0).inputs.data(63 downto 32) := n.dataRAMCHOD.outputs.q(63 downto 32);
+                        r.FSMReadRam(0)                         := S3;
+                      else
+                        n.SENDFIFO(0).inputs.data(63 downto 56) := (others => '0');
+                        n.SENDFIFO(0).inputs.data(55 downto 32) := n.dataRAMCHOD.outputs.q(31 downto 8)); --LSB timestamp
+                        r.FSMReadRam(0)                         := S4;
+                        tsH                                     := n.dataRAMCHOD.outputs.q(31 downto 8) -- update timestamp
+                      word_send := 1; --send another word to complete the package
+                    else
+                      if tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then
+                        n.SENDFIFO(0).inputs.data(31 downto 0)  := n.dataRAMCHOD.outputs.q(63 downto 32);
+                        r.FSMReadRam(0)                         := S3;
+                      else
+                        n.SENDFIFO(0).inputs.data(63 downto 56) := (others => '0');
+                        n.SENDFIFO(0).inputs.data(55 downto 32) := n.dataRAMCHOD.outputs.q(31 downto 8)); --LSB timestamp
+                        r.FSMReadRam(0)                         := S4;
+                        tsH                                     := n.dataRAMCHOD.outputs.q(31 downto 8) -- update timestamp
+                      word_send := 0;
+                    end if;
                     n.SENDFIFO(0).inputs.wrreq              := '1';
-                    r.FSMReadRam(0)                         := S3;
                   else
                     r.FSMReadRam(0) := S5;
                   end if;  --firstword
