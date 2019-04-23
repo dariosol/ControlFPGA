@@ -86,9 +86,11 @@ architecture rtl of Controller is
   end component;
 
 --PLL SIGNALS-----------------
-  signal pll_c0           : std_logic;
-  signal pll_locked       : std_logic;
-  signal signal_pll_c0    : std_logic;
+  signal s_clk40           : std_logic;
+  signal s_locked40        : std_logic;
+  signal s_clk125          : std_logic;
+  signal s_locked125       : std_logic;
+  
 ------------------------------
   signal counter_RUN      : unsigned(31 downto 0);
   signal counter_INTERRUN : unsigned(31 downto 0);
@@ -130,35 +132,64 @@ architecture rtl of Controller is
       );
   end component;
 
+     --Handle Timestamp @40 MHz and 125 MHz with crossing domain using a dual
+   --port fifo:
+   component altcountertimestamp IS
+      port (
+	 clock40   : in STD_LOGIC;
+	 clock125  : in STD_LOGIC;
+	 BURST       : in STD_LOGIC;
+	 internal_timestamp : out STD_LOGIC_VECTOR(29 downto 0);
+	 internal_timestamp125 : out STD_LOGIC_VECTOR(29 downto 0)
+	 ); end component;
+
+
 ---------
 
 
 begin
 
-  PLL_INST : pll port map
+  PLL40_inst : pll port map
     (
       areset => not(resetn),
       inclk0 => OSCILL_50,
-      c0     => pll_c0,                 --40 MHz
-      locked => pll_locked
+      c0     => s_clk40,                 --40 MHz
+      locked => s_locked40
       );
 
+--Internal PLL
+   PLL125_inst : altpll_refclk2 port map(
+      inclk0   => OSC_50_B2, --from DE4
+      areset   => '0',
+      Locked   => s_locked125,
+      c0       => s_clk125
+   );
+
+  
   RANDOM_INST : random port map
     (
-      clk           => pll_c0,          --40 MHz
+      clk           => s_clk40,          --40 MHz
       reset         => not(resetn),
       RUN           => s_RUN,
       validateCHOKE => CHOKE,
       validateERROR => error
       );
 
+  CTSTMP: altcountertimestamp port map (
+      clock40               => s_clk40,
+      clock125              => s_clk125,
+      BURST                 => s_RUN,
+      internal_timestamp    => s_internal_timestamp,
+      internal_timestamp125 => s_internal_timestamp125  
+      );
+  
 -- This module receives triggers from the FLAT cable and sample it in order to
 -- know the trigger timestamp sent to the LTU. the output is sent to the
 -- ethlink module which sends the results to a workstation via UDP.
 
   TRIGGER_INST : trigger_input port map
     (
-      clk40           => pll_c0,
+      clk40           => s_clk40,
       clk50           => OSCILL_50,
       LTU0            => LTU0,
       LTU1            => LTU1,
@@ -198,6 +229,9 @@ begin
   ethlink_inst : ethlink port map
     (
       inputs.clkin_50   => OSCILL_50,
+      inputs.clkin_125  => s_clk125,
+      inputs.clkin_40   => s_clk40,
+      
       inputs.cpu_resetn => resetn,
       inputs.enet_rxp   => ETH_RX_p(0 to ethlink_NODES-1),
       inputs.mdio_sin   => mdio_sin(0 to ethlink_NODES-1),
@@ -233,17 +267,17 @@ begin
 
 
 
-  process(resetn, pll_c0)
+  process(resetn, s_clk40)
   begin
 
-    sma_clkout_p <= pll_c0;             -- clock to L0TP
+    sma_clkout_p <= s_clk40;             -- clock to L0TP
 
     if resetn = '0' then
       counter_INTERRUN <= (others => '0');
       counter_RUN      <= (others => '0');
       state            <= idle;
       s_readdata       <= '0';
-    elsif rising_edge(pll_c0) then
+    elsif rising_edge(s_clk40) then
       case state is
         when idle =>
           counter_INTERRUN <= counter_INTERRUN +1;
