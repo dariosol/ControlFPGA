@@ -51,40 +51,44 @@ allregs.dout.clk125.FSMReadRam[0].S5 0 1 0 0 0 0 0 1
 allregs.dout.clk125.FSMReadRam[0].S6 1 0 0 0 0 0 0 1 
 
 State Machine - |Controller|ethlink:ethlink_inst|allregs.dout.clk125.FSMecho[3]
-Name allregs.dout.clk125.FSMecho[3].S5 allregs.dout.clk125.FSMecho[3].S4 allregs.dout.clk125.FSMecho[3].S3 allregs.dout.clk125.FSMecho[3].S2 allregs.dout.clk125.FSMecho[3].S1 allregs.dout.clk125.FSMecho[3].S0 
-allregs.dout.clk125.FSMecho[3].S0 0 0 0 0 0 0 
-allregs.dout.clk125.FSMecho[3].S1 0 0 0 0 1 1 
-allregs.dout.clk125.FSMecho[3].S2 0 0 0 1 0 1 
-allregs.dout.clk125.FSMecho[3].S3 0 0 1 0 0 1 
-allregs.dout.clk125.FSMecho[3].S4 0 1 0 0 0 1 
-allregs.dout.clk125.FSMecho[3].S5 1 0 0 0 0 1 
+Name allregs.dout.clk125.FSMecho[3].S5 allregs.dout.clk125.FSMecho[3].S4_0 allregs.dout.clk125.FSMecho[3].S4 allregs.dout.clk125.FSMecho[3].S3 allregs.dout.clk125.FSMecho[3].S2 allregs.dout.clk125.FSMecho[3].S1 allregs.dout.clk125.FSMecho[3].S0 
+allregs.dout.clk125.FSMecho[3].S0 0 0 0 0 0 0 0 
+allregs.dout.clk125.FSMecho[3].S1 0 0 0 0 0 1 1 
+allregs.dout.clk125.FSMecho[3].S2 0 0 0 0 1 0 1 
+allregs.dout.clk125.FSMecho[3].S3 0 0 0 1 0 0 1 
+allregs.dout.clk125.FSMecho[3].S4 0 0 1 0 0 0 1 
+allregs.dout.clk125.FSMecho[3].S4_0 0 1 0 0 0 0 1 
+allregs.dout.clk125.FSMecho[3].S5 1 0 0 0 0 0 1 
 
 State Machine - |Controller|ethlink:ethlink_inst|allregs.dout.clk125.FSMecho[2]
-Name allregs.dout.clk125.FSMecho[2].S5 allregs.dout.clk125.FSMecho[2].S4 allregs.dout.clk125.FSMecho[2].S3 allregs.dout.clk125.FSMecho[2].S2 allregs.dout.clk125.FSMecho[2].S1 allregs.dout.clk125.FSMecho[2].S0 
-allregs.dout.clk125.FSMecho[2].S0 0 0 0 0 0 0 
-allregs.dout.clk125.FSMecho[2].S1 0 0 0 0 1 1 
-allregs.dout.clk125.FSMecho[2].S2 0 0 0 1 0 1 
-allregs.dout.clk125.FSMecho[2].S3 0 0 1 0 0 1 
-allregs.dout.clk125.FSMecho[2].S4 0 1 0 0 0 1 
-allregs.dout.clk125.FSMecho[2].S5 1 0 0 0 0 1 
+Name allregs.dout.clk125.FSMecho[2].S5 allregs.dout.clk125.FSMecho[2].S4_0 allregs.dout.clk125.FSMecho[2].S4 allregs.dout.clk125.FSMecho[2].S3 allregs.dout.clk125.FSMecho[2].S2 allregs.dout.clk125.FSMecho[2].S1 allregs.dout.clk125.FSMecho[2].S0 
+allregs.dout.clk125.FSMecho[2].S0 0 0 0 0 0 0 0 
+allregs.dout.clk125.FSMecho[2].S1 0 0 0 0 0 1 1 
+allregs.dout.clk125.FSMecho[2].S2 0 0 0 0 1 0 1 
+allregs.dout.clk125.FSMecho[2].S3 0 0 0 1 0 0 1 
+allregs.dout.clk125.FSMecho[2].S4 0 0 1 0 0 0 1 
+allregs.dout.clk125.FSMecho[2].S4_0 0 1 0 0 0 0 1 
+allregs.dout.clk125.FSMecho[2].S5 1 0 0 0 0 0 1 
 
 State Machine - |Controller|ethlink:ethlink_inst|allregs.dout.clk125.FSMecho[1]
-Name allregs.dout.clk125.FSMecho[1].S5 allregs.dout.clk125.FSMecho[1].S4 allregs.dout.clk125.FSMecho[1].S3 allregs.dout.clk125.FSMecho[1].S2 allregs.dout.clk125.FSMecho[1].S1 allregs.dout.clk125.FSMecho[1].S0 
-allregs.dout.clk125.FSMecho[1].S0 0 0 0 0 0 0 
-allregs.dout.clk125.FSMecho[1].S1 0 0 0 0 1 1 
-allregs.dout.clk125.FSMecho[1].S2 0 0 0 1 0 1 
-allregs.dout.clk125.FSMecho[1].S3 0 0 1 0 0 1 
-allregs.dout.clk125.FSMecho[1].S4 0 1 0 0 0 1 
-allregs.dout.clk125.FSMecho[1].S5 1 0 0 0 0 1 
+Name allregs.dout.clk125.FSMecho[1].S5 allregs.dout.clk125.FSMecho[1].S4_0 allregs.dout.clk125.FSMecho[1].S4 allregs.dout.clk125.FSMecho[1].S3 allregs.dout.clk125.FSMecho[1].S2 allregs.dout.clk125.FSMecho[1].S1 allregs.dout.clk125.FSMecho[1].S0 
+allregs.dout.clk125.FSMecho[1].S0 0 0 0 0 0 0 0 
+allregs.dout.clk125.FSMecho[1].S1 0 0 0 0 0 1 1 
+allregs.dout.clk125.FSMecho[1].S2 0 0 0 0 1 0 1 
+allregs.dout.clk125.FSMecho[1].S3 0 0 0 1 0 0 1 
+allregs.dout.clk125.FSMecho[1].S4 0 0 1 0 0 0 1 
+allregs.dout.clk125.FSMecho[1].S4_0 0 1 0 0 0 0 1 
+allregs.dout.clk125.FSMecho[1].S5 1 0 0 0 0 0 1 
 
 State Machine - |Controller|ethlink:ethlink_inst|allregs.dout.clk125.FSMecho[0]
-Name allregs.dout.clk125.FSMecho[0].S5 allregs.dout.clk125.FSMecho[0].S4 allregs.dout.clk125.FSMecho[0].S3 allregs.dout.clk125.FSMecho[0].S2 allregs.dout.clk125.FSMecho[0].S1 allregs.dout.clk125.FSMecho[0].S0 
-allregs.dout.clk125.FSMecho[0].S0 0 0 0 0 0 0 
-allregs.dout.clk125.FSMecho[0].S1 0 0 0 0 1 1 
-allregs.dout.clk125.FSMecho[0].S2 0 0 0 1 0 1 
-allregs.dout.clk125.FSMecho[0].S3 0 0 1 0 0 1 
-allregs.dout.clk125.FSMecho[0].S4 0 1 0 0 0 1 
-allregs.dout.clk125.FSMecho[0].S5 1 0 0 0 0 1 
+Name allregs.dout.clk125.FSMecho[0].S5 allregs.dout.clk125.FSMecho[0].S4_0 allregs.dout.clk125.FSMecho[0].S4 allregs.dout.clk125.FSMecho[0].S3 allregs.dout.clk125.FSMecho[0].S2 allregs.dout.clk125.FSMecho[0].S1 allregs.dout.clk125.FSMecho[0].S0 
+allregs.dout.clk125.FSMecho[0].S0 0 0 0 0 0 0 0 
+allregs.dout.clk125.FSMecho[0].S1 0 0 0 0 0 1 1 
+allregs.dout.clk125.FSMecho[0].S2 0 0 0 0 1 0 1 
+allregs.dout.clk125.FSMecho[0].S3 0 0 0 1 0 0 1 
+allregs.dout.clk125.FSMecho[0].S4 0 0 1 0 0 0 1 
+allregs.dout.clk125.FSMecho[0].S4_0 0 1 0 0 0 0 1 
+allregs.dout.clk125.FSMecho[0].S5 1 0 0 0 0 0 1 
 
 State Machine - |Controller|ethlink:ethlink_inst|allregs.dout.clk50.FSMSendTrigger
 Name allregs.dout.clk50.FSMSendTrigger.S4 allregs.dout.clk50.FSMSendTrigger.S3 allregs.dout.clk50.FSMSendTrigger.S2 allregs.dout.clk50.FSMSendTrigger.S1 allregs.dout.clk50.FSMSendTrigger.S0 

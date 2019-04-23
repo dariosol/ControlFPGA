@@ -90,6 +90,8 @@ architecture rtl of Controller is
   signal s_locked40        : std_logic;
   signal s_clk125          : std_logic;
   signal s_locked125       : std_logic;
+  signal s_internal_timestamp: std_logic_vector(29 downto 0);
+  signal s_internal_timestamp125: std_logic_vector(29 downto 0);
   
 ------------------------------
   signal counter_RUN      : unsigned(31 downto 0);
@@ -144,6 +146,17 @@ architecture rtl of Controller is
 	 ); end component;
 
 
+   --PLL clock @ 125 MHz:
+   component altpll_refclk2
+      port(
+	 areset		: IN STD_LOGIC  := '0';
+	 inclk0		: IN STD_LOGIC;
+	 c0	        : OUT STD_LOGIC ;
+	 locked		: OUT STD_LOGIC 
+	 );
+   end component;
+
+  
 ---------
 
 
@@ -159,7 +172,7 @@ begin
 
 --Internal PLL
    PLL125_inst : altpll_refclk2 port map(
-      inclk0   => OSC_50_B2, --from DE4
+      inclk0   => OSCILL_50, --from DE4
       areset   => '0',
       Locked   => s_locked125,
       c0       => s_clk125
@@ -240,7 +253,7 @@ begin
       inputs.sw1        => sw1,
       inputs.sw2        => sw2,
       inputs.sw3        => sw3,
-
+      inputs.internal_timestamp125 => s_internal_timestamp125,
       inputs.timestamp       => s_timestamp,
       inputs.numberoftrigger => s_numberoftrigger,
       inputs.triggerword     => s_triggerword,

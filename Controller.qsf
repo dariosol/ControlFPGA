@@ -2003,6 +2003,10 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_PIPELINE=0" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_PIPELINE=0" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_COUNTER_PIPELINE=0" -section_id auto_signaltap_0
+set_global_assignment -name SOURCE_FILE altFIFOtstmp.cmp
+set_global_assignment -name QIP_FILE altFIFOtstmp.qip
+set_global_assignment -name VHDL_FILE altFIFOtstmp.vhd
+set_global_assignment -name VHDL_FILE CounterTstmp.vhd
 set_global_assignment -name VHDL_FILE mac/altramdataRICH.vhd
 set_global_assignment -name VHDL_FILE mac/altramdataLAV.vhd
 set_global_assignment -name VHDL_FILE mac/sendfifo.vhd
@@ -2080,5 +2084,6 @@ set_global_assignment -name VHDL_FILE Trigger_input.vhd
 set_global_assignment -name QIP_FILE mac/alttriggerfifo.qip
 set_global_assignment -name VHDL_FILE mac/triggerfifo.vhd
 set_global_assignment -name CDF_FILE ../../ethlink8PORTE/eth1DE4_versione17.2/ethlink/Chain3.cdf
-set_global_assignment -name SLD_FILE db/Controller_auto_stripped.stp
+set_global_assignment -name SOURCE_FILE db/Controller.cmp.rdb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/Controller_auto_stripped.stp
