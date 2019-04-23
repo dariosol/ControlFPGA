@@ -22,6 +22,8 @@ package component_ethlink is
 
     clkin_50 : std_logic;
 
+    clkin_125 : std_logic;   
+
     cpu_resetn : std_logic;
 
     enet_rxp : std_logic_vector(0 to ethlink_NODES - 1);
@@ -84,7 +86,6 @@ use work.globals.all;
 use work.component_ethlink.all;
 use work.component_syncrst1.all;
 use work.component_mac_sgmii.all;
-use work.component_pll_refclk2.all;
 use work.component_ram2trigger.all;
 use work.component_ramdataCHOD.all;
 use work.component_ramdataMUV.all;
@@ -226,7 +227,6 @@ architecture rtl of ethlink is
     clk125      : std_logic;
     rst         : resetlist_t;
     SyncRST     : syncrst1_t;
-    PLL         : pll_refclk2_t;        --125 MHz clock
     dataRAMMUV  : ramdataMUV_t;         --Preset RAM for MUV3 data
     dataRAMCHOD : ramdataCHOD_t;        --Preset RAM for CHOD data
     SENDFIFO    : sendfifo_vector_t(0 to ethlink_NODES - 1);
@@ -255,13 +255,6 @@ begin
       inputs  => allnets.SyncRST.inputs,
       outputs => allnets.SyncRST.outputs
       );
-
-  PLL : pll_refclk2 port map
-    (
-      inputs  => allnets.PLL.inputs,
-      outputs => allnets.PLL.outputs
-      );
-
 
 --It receives the triggers miming the LTU behavior
 
@@ -338,7 +331,7 @@ begin
         ) is
     begin
 
-      n.clk125                := n.PLL.outputs.c0;
+      n.clk125                := i.clkin_125;
       n.SyncRST.inputs.clk(1) := i.clkin_50;
       n.SyncRST.inputs.clr(1) := not(i.cpu_resetn);
       n.rst.main              := n.SyncRST.outputs.rst(1);
@@ -385,10 +378,7 @@ begin
         ) is
     begin
 
-      -- Main PLL
-      n.PLL.inputs.areset := '0';
-      n.PLL.inputs.inclk0 := i.clkin_50;
-
+      
       r.clk50.div2       := not(ro.clk50.div2);
       r.clk125.hwaddress := i.USER_DIPSW(7 downto 0);
 
@@ -672,7 +662,7 @@ begin
         variable ro : in    reglist_clk125_t;
         variable o  : inout outputs_t;
         variable r  : inout reglist_clk125_t;
-        variable n  : inout netlist_t;
+        variable n  : inout netlist_t
         ) is
     begin
 

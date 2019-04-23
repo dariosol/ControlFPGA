@@ -230,7 +230,6 @@ begin
     (
       inputs.clkin_50   => OSCILL_50,
       inputs.clkin_125  => s_clk125,
-      inputs.clkin_40   => s_clk40,
       
       inputs.cpu_resetn => resetn,
       inputs.enet_rxp   => ETH_RX_p(0 to ethlink_NODES-1),

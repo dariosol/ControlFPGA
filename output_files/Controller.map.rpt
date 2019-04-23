@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Controller
-Tue Apr 23 09:49:36 2019
+Tue Apr 23 10:00:46 2019
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +-----------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status       ; Failed - Tue Apr 23 09:49:36 2019               ;
+; Analysis & Synthesis Status       ; Failed - Tue Apr 23 10:00:46 2019               ;
 ; Quartus Prime Version             ; 16.1.0 Build 196 10/24/2016 SJ Standard Edition ;
 ; Revision Name                     ; Controller                                      ;
 ; Top-level Entity Name             ; Controller                                      ;
@@ -169,7 +169,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
-    Info: Processing started: Tue Apr 23 09:49:25 2019
+    Info: Processing started: Tue Apr 23 10:00:36 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Controller -c Controller
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -251,25 +251,25 @@ Info (12021): Found 4 design units, including 2 entities, in source file altiobu
 Info (12021): Found 2 design units, including 1 entities, in source file mac/sgmii/alttse1.vhd
     Info (12022): Found design unit 1: alttse1-SYN File: /home/na62torino/Data/ControlFPGA/mac/sgmii/alttse1.vhd Line: 65
     Info (12023): Found entity 1: alttse1 File: /home/na62torino/Data/ControlFPGA/mac/sgmii/alttse1.vhd Line: 35
-Error (10500): VHDL syntax error at ethlink.vhd(758) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 758
-Error (10500): VHDL syntax error at ethlink.vhd(761) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 761
-Error (10500): VHDL syntax error at ethlink.vhd(762) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 762
-Error (10500): VHDL syntax error at ethlink.vhd(768) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 768
-Error (10500): VHDL syntax error at ethlink.vhd(771) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 771
-Error (10500): VHDL syntax error at ethlink.vhd(774) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 774
-Error (10500): VHDL syntax error at ethlink.vhd(795) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 795
-Error (10500): VHDL syntax error at ethlink.vhd(798) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 798
-Error (10500): VHDL syntax error at ethlink.vhd(799) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 799
-Error (10500): VHDL syntax error at ethlink.vhd(805) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 805
-Error (10500): VHDL syntax error at ethlink.vhd(808) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 808
-Error (10500): VHDL syntax error at ethlink.vhd(811) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 811
-Error (10500): VHDL syntax error at ethlink.vhd(853) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 853
-Error (10500): VHDL syntax error at ethlink.vhd(857) near text "when";  expecting "end", or "(", or an identifier ("when" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 857
-Error (10500): VHDL syntax error at ethlink.vhd(867) near text "when";  expecting "end", or "(", or an identifier ("when" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 867
-Error (10500): VHDL syntax error at ethlink.vhd(881) near text "case";  expecting "if" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 881
-Error (10500): VHDL syntax error at ethlink.vhd(1046) near text "procedure";  expecting "loop" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 1046
+Error (10500): VHDL syntax error at ethlink.vhd(757) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 757
+Error (10500): VHDL syntax error at ethlink.vhd(760) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 760
+Error (10500): VHDL syntax error at ethlink.vhd(761) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 761
+Error (10500): VHDL syntax error at ethlink.vhd(767) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 767
+Error (10500): VHDL syntax error at ethlink.vhd(770) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 770
+Error (10500): VHDL syntax error at ethlink.vhd(773) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 773
+Error (10500): VHDL syntax error at ethlink.vhd(794) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 794
+Error (10500): VHDL syntax error at ethlink.vhd(797) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 797
+Error (10500): VHDL syntax error at ethlink.vhd(798) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 798
+Error (10500): VHDL syntax error at ethlink.vhd(804) near text ")"; mismatched closing parenthesis  File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 804
+Error (10500): VHDL syntax error at ethlink.vhd(807) near text "word_send";  expecting ";" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 807
+Error (10500): VHDL syntax error at ethlink.vhd(810) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 810
+Error (10500): VHDL syntax error at ethlink.vhd(852) near text "else";  expecting "end", or "(", or an identifier ("else" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 852
+Error (10500): VHDL syntax error at ethlink.vhd(856) near text "when";  expecting "end", or "(", or an identifier ("when" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 856
+Error (10500): VHDL syntax error at ethlink.vhd(866) near text "when";  expecting "end", or "(", or an identifier ("when" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 866
+Error (10500): VHDL syntax error at ethlink.vhd(880) near text "case";  expecting "if" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 880
+Error (10500): VHDL syntax error at ethlink.vhd(1045) near text "procedure";  expecting "loop" File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 1045
+Error (10500): VHDL syntax error at ethlink.vhd(1049) near text "variable";  expecting "end", or "(", or an identifier ("variable" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 1049
 Error (10500): VHDL syntax error at ethlink.vhd(1050) near text "variable";  expecting "end", or "(", or an identifier ("variable" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 1050
-Error (10500): VHDL syntax error at ethlink.vhd(1051) near text "variable";  expecting "end", or "(", or an identifier ("variable" is a reserved keyword), or a sequential statement File: /home/na62torino/Data/ControlFPGA/ethlink.vhd Line: 1051
 Info (12021): Found 0 design units, including 0 entities, in source file ethlink.vhd
 Info (12021): Found 3 design units, including 1 entities, in source file mac/mac_sgmii.vhd
     Info (12022): Found design unit 1: component_mac_sgmii File: /home/na62torino/Data/ControlFPGA/mac/mac_sgmii.vhd Line: 44
@@ -427,9 +427,9 @@ Info (12021): Found 3 design units, including 1 entities, in source file mac/tri
     Info (12022): Found design unit 2: triggerfifo-rtl File: /home/na62torino/Data/ControlFPGA/mac/triggerfifo.vhd Line: 143
     Info (12023): Found entity 1: triggerfifo File: /home/na62torino/Data/ControlFPGA/mac/triggerfifo.vhd Line: 127
 Error: Quartus Prime Analysis & Synthesis was unsuccessful. 19 errors, 1 warning
-    Error: Peak virtual memory: 1086 megabytes
-    Error: Processing ended: Tue Apr 23 09:49:36 2019
-    Error: Elapsed time: 00:00:11
-    Error: Total CPU time (on all processors): 00:00:25
+    Error: Peak virtual memory: 1087 megabytes
+    Error: Processing ended: Tue Apr 23 10:00:46 2019
+    Error: Elapsed time: 00:00:10
+    Error: Total CPU time (on all processors): 00:00:26
 
 
