@@ -407,9 +407,9 @@ BUTTON0                      : AH5       : input  : 3.0-V PCI         :         
 SW[6]                        : AH6       : input  : 3.3-V LVCMOS      :         : 5C        : Y              
 VCCIO5C                      : AH7       : power  :                   : 3.0V    : 5C        :                
 CHOKE[13]                    : AH8       : output : 3.0-V PCI         :         : 5C        : Y              
-ERROR[13]                    : AH9       : output : 3.0-V PCI         :         : 5C        : Y              
+error[13]                    : AH9       : output : 3.0-V PCI         :         : 5C        : Y              
 LTU4                         : AH10      : input  : 3.3-V LVCMOS      :         : 5A        : Y              
-ERROR[12]                    : AH11      : output : 3.0-V PCI         :         : 5A        : Y              
+error[12]                    : AH11      : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH12      :        :                   :         : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH13      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH14      :        :                   :         : 4A        :                
@@ -443,7 +443,7 @@ GXB_GND*                     : AJ2       :        :                   :         
 GND                          : AJ3       : gnd    :                   :         :           :                
 GND                          : AJ4       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ5       :        :                   :         : 5C        :                
-ERROR[11]                    : AJ6       : output : 3.0-V PCI         :         : 5C        : Y              
+error[11]                    : AJ6       : output : 3.0-V PCI         :         : 5C        : Y              
 GND                          : AJ7       : gnd    :                   :         :           :                
 VCCIO5C                      : AJ8       : power  :                   : 3.0V    : 5C        :                
 GND                          : AJ9       : gnd    :                   :         :           :                
@@ -524,7 +524,7 @@ CHOKE[10]                    : AL5       : output : 3.0-V PCI         :         
 CHOKE[9]                     : AL6       : output : 3.0-V PCI         :         : 5C        : Y              
 VCCIO5C                      : AL7       : power  :                   : 3.0V    : 5C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AL8       :        :                   :         : 5A        :                
-ERROR[10]                    : AL9       : output : 3.0-V PCI         :         : 5A        : Y              
+error[10]                    : AL9       : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AL10      :        :                   :         : 5A        :                
 GND                          : AL11      : gnd    :                   :         :           :                
 VCCAUX                       : AL12      : power  :                   : 2.5V    :           :                
@@ -560,7 +560,7 @@ GND                          : AM2       : gnd    :                   :         
 GXB_NC                       : AM3       :        :                   :         : QR0       :                
 GXB_NC                       : AM4       :        :                   :         : QR0       :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AM5       :        :                   :         : 5C        :                
-ERROR[9]                     : AM6       : output : 3.0-V PCI         :         : 5C        : Y              
+error[9]                     : AM6       : output : 3.0-V PCI         :         : 5C        : Y              
 GND                          : AM7       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AM8       :        :                   :         : 5A        :                
 GND                          : AM9       : gnd    :                   :         :           :                
@@ -599,7 +599,7 @@ GXB_GND*                     : AN2       :        :                   :         
 GND                          : AN3       : gnd    :                   :         :           :                
 GND                          : AN4       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AN5       :        :                   :         : 5C        :                
-ERROR[8]                     : AN6       : output : 3.0-V PCI         :         : 5C        : Y              
+error[8]                     : AN6       : output : 3.0-V PCI         :         : 5C        : Y              
 CHOKE[8]                     : AN7       : output : 3.0-V PCI         :         : 5A        : Y              
 VCCIO5A                      : AN8       : power  :                   : 3.0V    : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AN9       :        :                   :         : 5A        :                
@@ -676,7 +676,7 @@ GXB_GND*                     : AR1       :        :                   :         
 GXB_GND*                     : AR2       :        :                   :         : QR0       :                
 GND                          : AR3       : gnd    :                   :         :           :                
 GND                          : AR4       : gnd    :                   :         :           :                
-ERROR[6]                     : AR5       : output : 3.0-V PCI         :         : 5A        : Y              
+error[6]                     : AR5       : output : 3.0-V PCI         :         : 5A        : Y              
 GND                          : AR6       : gnd    :                   :         :           :                
 VCCIO5A                      : AR7       : power  :                   : 3.0V    : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AR8       :        :                   :         : 5A        :                
@@ -716,11 +716,11 @@ GND                          : AT2       : gnd    :                   :         
 GXB_NC                       : AT3       :        :                   :         : QR0       :                
 GXB_NC                       : AT4       :        :                   :         : QR0       :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AT5       :        :                   :         : 5A        :                
-ERROR[5]                     : AT6       : output : 3.0-V PCI         :         : 5A        : Y              
-ERROR[7]                     : AT7       : output : 3.0-V PCI         :         : 5A        : Y              
+error[5]                     : AT6       : output : 3.0-V PCI         :         : 5A        : Y              
+error[7]                     : AT7       : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AT8       :        :                   :         : 5A        :                
 ECRST                        : AT9       : output : 3.0-V PCI         :         : 5A        : Y              
-ERROR[4]                     : AT10      : output : 3.0-V PCI         :         : 5A        : Y              
+error[4]                     : AT10      : output : 3.0-V PCI         :         : 5A        : Y              
 nCEO                         : AT11      :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AT12      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AT13      :        :                   :         : 4A        :                
@@ -757,7 +757,7 @@ GND                          : AU4       : gnd    :                   :         
 NC                           : AU5       :        :                   :         :           :                
 CHOKE[5]                     : AU6       : output : 3.0-V PCI         :         : 5A        : Y              
 CHOKE[6]                     : AU7       : output : 3.0-V PCI         :         : 5A        : Y              
-ERROR[3]                     : AU8       : output : 3.0-V PCI         :         : 5A        : Y              
+error[3]                     : AU8       : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AU9       :        :                   :         : 5A        :                
 CHOKE[3]                     : AU10      : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AU11      :        :                   :         : 4A        :                
@@ -798,7 +798,7 @@ GND                          : AV6       : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : AV7       :        :                   :         : 5A        :                
 CHOKE[2]                     : AV8       : output : 3.0-V PCI         :         : 5A        : Y              
 GND                          : AV9       : gnd    :                   :         :           :                
-ERROR[1]                     : AV10      : output : 3.0-V PCI         :         : 5A        : Y              
+error[1]                     : AV10      : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AV11      :        :                   :         : 4A        :                
 GND                          : AV12      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AV13      :        :                   :         : 4A        :                
@@ -834,9 +834,9 @@ CHOKE[1]                     : AW4       : output : 3.0-V PCI         :         
 CHOKE[0]                     : AW5       : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AW6       :        :                   :         : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AW7       :        :                   :         : 5A        :                
-ERROR[0]                     : AW8       : output : 3.0-V PCI         :         : 5A        : Y              
+error[0]                     : AW8       : output : 3.0-V PCI         :         : 5A        : Y              
 VCCIO5A                      : AW9       : power  :                   : 3.0V    : 5A        :                
-ERROR[2]                     : AW10      : output : 3.0-V PCI         :         : 5A        : Y              
+error[2]                     : AW10      : output : 3.0-V PCI         :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AW11      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AW12      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AW13      :        :                   :         : 4A        :                

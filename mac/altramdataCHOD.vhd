@@ -199,9 +199,4 @@ END SYN;
 -- Retrieval info: CONNECT: @rden_b 0 0 0 0 rden 0 0 0 0
 -- Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 64 0 @q_b 0 0 64 0
--- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.inc FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.bsf FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: altera_mf

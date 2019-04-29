@@ -25,7 +25,8 @@ int rootToMif(TString file_path){
     test->SetAddress(&Primitive);
     for (UInt_t iEntry=0; iEntry<0x7FFF; iEntry++) {
       IRC->GetEntry(iEntry);
-      fprintf(mifDump,"%X : %.4X00%.2X%.8X;\n",iEntry,Primitive->GetPrimitiveID(),Primitive->GetFineTime(), Primitive->GetTimeStamp());
+      UInt_t timestampL = (Primitive->GetTimeStamp()) & 0x000F;
+      fprintf(mifDump,"%X : %.4X%.2X%.2X%.8X;\n",iEntry,Primitive->GetPrimitiveID(),timestampL,Primitive->GetFineTime(), Primitive->GetTimeStamp());
     }
     fprintf(mifDump,"END;");
     fclose(mifDump);
