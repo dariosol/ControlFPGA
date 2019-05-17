@@ -68,7 +68,7 @@ BEGIN
 		clock_enable_input_a => "BYPASS",
 		clock_enable_input_b => "BYPASS",
 		clock_enable_output_b => "BYPASS",
-		init_file => "./rootToMif/exportIRC.mif",
+		init_file => "./rootToMif/exportHIGH.mif",
 		intended_device_family => "Stratix IV",
 		lpm_type => "altsyncram",
 		numwords_a => 32768,
@@ -135,7 +135,7 @@ END SYN;
 -- Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
 -- Retrieval info: PRIVATE: MEMSIZE NUMERIC "2097152"
 -- Retrieval info: PRIVATE: MEM_IN_BITS NUMERIC "0"
--- Retrieval info: PRIVATE: MIFfilename STRING "./rootToMif/exportIRC.mif"
+-- Retrieval info: PRIVATE: MIFfilename STRING "./rootToMif/exportHIGH.mif"
 -- Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "2"
 -- Retrieval info: PRIVATE: OUTDATA_ACLR_B NUMERIC "0"
 -- Retrieval info: PRIVATE: OUTDATA_REG_B NUMERIC "0"
@@ -168,7 +168,7 @@ END SYN;
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_B STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_B STRING "BYPASS"
--- Retrieval info: CONSTANT: INIT_FILE STRING "./rootToMif/exportIRC.mif"
+-- Retrieval info: CONSTANT: INIT_FILE STRING "./rootToMif/exportHIGH.mif"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Stratix IV"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
 -- Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "32768"
@@ -199,4 +199,9 @@ END SYN;
 -- Retrieval info: CONNECT: @rden_b 0 0 0 0 rden 0 0 0 0
 -- Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 64 0 @q_b 0 0 64 0
+-- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.inc FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.cmp TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD.bsf FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL altramdataCHOD_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: altera_mf

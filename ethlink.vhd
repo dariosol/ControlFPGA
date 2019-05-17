@@ -178,6 +178,7 @@ architecture rtl of ethlink is
     hwaddress           : std_logic_vector(7 downto 0);
     eol                 : std_logic;
     isEnd               : vector8(0 to ethlink_NODES-1);
+    RAMbuffer           : std_logic_vector(31 downto 0);
     tsH                 : std_logic_vector(23 downto 0); -- LSB timestamp
     word_send           : std_logic;                     -- packet complete flag
   end record;
@@ -205,6 +206,7 @@ architecture rtl of ethlink is
       hwaddress           => "00000000",
       eol                 => '0',
       isEnd               => (others => "00000000"),
+      RAMbuffer           => (others => '0'),
       tsH                 => (others => '0'),
       word_send           => '0'
       );
@@ -696,6 +698,9 @@ begin
         case ro.FSMReadRam(index) is
 
           when S0_0 =>
+            r.tsH                        := (others => '0');
+            r.RAMbuffer                  := (others => '0');
+            r.word_send                  := '0';
             r.counterdata_in(index)      := (others => '0');
             r.counter_256(index)         := (others => '0');
             r.readdataramaddressb(index) := (others => '0');
@@ -730,7 +735,7 @@ begin
               r.FSMReadRam(index) := S0;
             end if;
 
-          when S2 => 
+          when S2 =>
             if i.startData = '1' then
               r.FSMReadRam(index) := S3;
             else
@@ -761,18 +766,19 @@ begin
                       if ro.word_send = '0' then
                         if ro.tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then -- check if timestamp changed (LSB)
                           r.readdataramaddressb(0)                := SLV(UINT(ro.readdataramaddressb(0)) + 1, 15); --update ram address
-                          r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
-                          n.SENDFIFO(0).inputs.data(63 downto 32) := n.dataRAMCHOD.outputs.q(63 downto 32);
+                          --r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
+                          r.RAMbuffer(31 downto 0)                := n.dataRAMCHOD.outputs.q(63 downto 32); --write to buffer reg
                           r.FSMReadRam(0)                         := S3;
                         else
-                          n.SENDFIFO(0).inputs.data(63 downto 56) := (others => '0');
-                          n.SENDFIFO(0).inputs.data(55 downto 32) := n.dataRAMCHOD.outputs.q(31 downto 8); --LSB timestamp
+                          r.RAMbuffer(31 downto 0)               := (others => '0');                      -- write to buffer reg
+                          r.RAMbuffer(23 downto 0)                := n.dataRAMCHOD.outputs.q(31 downto 8); --LSB timestamp
                           r.FSMReadRam(0)                         := S4;
                           r.tsH                                   := n.dataRAMCHOD.outputs.q(31 downto 8); -- update timestamp
                         end if;
                         r.word_send := '1'; --send another word to complete the package
 
                       else
+                        n.SENDFIFO(0).inputs.data(63 downto 32)   := ro.RAMbuffer(31 downto 0); -- get first 32bit word from buffer register
                         if ro.tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then
                           r.readdataramaddressb(0)                := SLV(UINT(ro.readdataramaddressb(0)) + 1, 15); --update ram address
                           r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
@@ -788,6 +794,14 @@ begin
                         n.SENDFIFO(0).inputs.wrreq              := '1';
                       end if;
                     else
+                      if ro.word_send = '1' and UINT(ro.RAMbuffer(31 downto 0)) > 0 then
+                        n.SENDFIFO(0).inputs.data(63 downto 32)   := ro.RAMbuffer(31 downto 0);
+                        n.SENDFIFO(0).inputs.data(31 downto 0)    := (others => '0');
+                        n.SENDFIFO(0).inputs.wrreq                := '1';
+                        r.RAMbuffer(31 downto 0)                  := (others => '0');
+                        r.word_send                               := '0';
+                        r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
+                      end if;
                       r.FSMReadRam(0) := S5;
                     end if;  --firstword
                   elsif i.sw0 = '1' then
@@ -799,22 +813,22 @@ begin
                 else
 
                   if SLV(UINT(n.dataRAMCHOD.outputs.q(31 downto 0)) + UINT(ro.sumtimestamp(0)(31 downto 0)), 32) < ro.counter_256(0) then  -- more than 6.4 us (256 clocks)
-
                     if ro.word_send = '0' then
                       if ro.tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then -- check if timestamp changed (LSB)
                         r.readdataramaddressb(0)                := SLV(UINT(ro.readdataramaddressb(0)) + 1, 15); --update ram address
-                        r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
-                        n.SENDFIFO(0).inputs.data(63 downto 32) := n.dataRAMCHOD.outputs.q(63 downto 32);
+                        --r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
+                        r.RAMbuffer(31 downto 0)                := n.dataRAMCHOD.outputs.q(63 downto 32); --write to buffer reg
                         r.FSMReadRam(0)                         := S3;
                       else
-                        n.SENDFIFO(0).inputs.data(63 downto 56) := (others => '0');
-                        n.SENDFIFO(0).inputs.data(55 downto 32) := n.dataRAMCHOD.outputs.q(31 downto 8); --LSB timestamp
+                        r.RAMbuffer(31 downto 0)               := (others => '0');                      -- write to buffer reg
+                        r.RAMbuffer(23 downto 0)                := n.dataRAMCHOD.outputs.q(31 downto 8); --LSB timestamp
                         r.FSMReadRam(0)                         := S4;
                         r.tsH                                   := n.dataRAMCHOD.outputs.q(31 downto 8); -- update timestamp
                       end if;
                       r.word_send := '1'; --send another word to complete the package
 
                     else
+                      n.SENDFIFO(0).inputs.data(63 downto 32)   := ro.RAMbuffer(31 downto 0); -- get first 32bit word from buffer register
                       if ro.tsH = n.dataRAMCHOD.outputs.q(31 downto 8) then
                         r.readdataramaddressb(0)                := SLV(UINT(ro.readdataramaddressb(0)) + 1, 15); --update ram address
                         r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
@@ -830,6 +844,14 @@ begin
                       n.SENDFIFO(0).inputs.wrreq              := '1';
                     end if;
                   else
+                    if ro.word_send = '1' and UINT(ro.RAMbuffer(31 downto 0)) > 0 then
+                      n.SENDFIFO(0).inputs.data(63 downto 32)   := ro.RAMbuffer(31 downto 0);
+                      n.SENDFIFO(0).inputs.data(31 downto 0)    := (others => '0');
+                      n.SENDFIFO(0).inputs.wrreq                := '1';
+                      r.RAMbuffer(31 downto 0)                  := (others => '0');
+                      r.counterdata_in(0)                     := SLV(UINT(ro.counterdata_in(0)) + 1, 8);
+                      r.word_send                               := '0';
+                    end if;
                     r.FSMReadRam(0) := S5;
                   end if;  --firstword
                 end if;  --last word

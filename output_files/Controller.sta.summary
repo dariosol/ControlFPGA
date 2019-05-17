@@ -3,63 +3,63 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Setup 'OSCILL_50'
-Slack : 0.210
+Slack : 0.231
 TNS   : 0.000
 
 Type  : Setup 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 21.625
+Slack : 20.817
 TNS   : 0.000
 
 Type  : Setup 'altera_reserved_tck'
-Slack : 46.149
-TNS   : 0.000
-
-Type  : Hold 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.220
+Slack : 45.396
 TNS   : 0.000
 
 Type  : Hold 'OSCILL_50'
-Slack : 0.252
+Slack : 0.183
+TNS   : 0.000
+
+Type  : Hold 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.242
 TNS   : 0.000
 
 Type  : Hold 'altera_reserved_tck'
-Slack : 0.310
+Slack : 0.311
 TNS   : 0.000
 
 Type  : Recovery 'OSCILL_50'
-Slack : 1.115
+Slack : 1.118
 TNS   : 0.000
 
 Type  : Recovery 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 3.212
+Slack : 3.250
 TNS   : 0.000
 
 Type  : Recovery 'altera_reserved_tck'
-Slack : 93.423
-TNS   : 0.000
-
-Type  : Removal 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.385
+Slack : 92.860
 TNS   : 0.000
 
 Type  : Removal 'OSCILL_50'
-Slack : 0.440
+Slack : 0.442
+TNS   : 0.000
+
+Type  : Removal 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.491
 TNS   : 0.000
 
 Type  : Removal 'altera_reserved_tck'
-Slack : 0.658
+Slack : 0.511
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'OSCILL_50'
-Slack : 9.077
+Slack : 9.086
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 11.706
+Slack : 11.714
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'altera_reserved_tck'
-Slack : 49.262
+Slack : 49.257
 TNS   : 0.000
 
 ------------------------------------------------------------
