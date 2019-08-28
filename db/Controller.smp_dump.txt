@@ -1710,13 +1710,6 @@ allregs.dout.wclk[1].FSMtxportwr.S2_0 0 0 1 0 0 1
 allregs.dout.wclk[1].FSMtxportwr.S2_1 0 1 0 0 0 1 
 allregs.dout.wclk[1].FSMtxportwr.S2_2 1 0 0 0 0 1 
 
-State Machine - |Controller|Trigger_input:TRIGGER_INST|FSMstate
-Name FSMstate.wait1clk FSMstate.S2 FSMstate.S1 FSMstate.S0 
-FSMstate.S0 0 0 0 0 
-FSMstate.S1 0 0 1 1 
-FSMstate.S2 0 1 0 1 
-FSMstate.wait1clk 1 0 0 1 
-
 State Machine - |Controller|random:RANDOM_INST|state
 Name state.S3 state.S2 state.S1 state.S0 state.S00 
 state.S00 0 0 0 0 0 

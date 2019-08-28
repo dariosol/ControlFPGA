@@ -65,26 +65,28 @@ architecture rtl of Controller is
         );
   end component;
 
-  component Trigger_input is
-    port
-      (
-        clk40           : in  std_logic;
-        clk50           : in  std_logic;
-        LTU0            : in  std_logic;
-        LTU1            : in  std_logic;
-        LTU2            : in  std_logic;
-        LTU3            : in  std_logic;
-        LTU4            : in  std_logic;
-        LTU5            : in  std_logic;
-        LTU_TRIGGER     : in  std_logic;
-        RUN             : in  std_logic;
-        timestamp       : out std_logic_vector(31 downto 0);
-        triggerword     : out std_logic_vector(5 downto 0);
-        numberoftrigger : out std_logic_vector(24 downto 0);
-        received        : out std_logic
-        );
-  end component;
+--  component Trigger_input is
+--    port
+--      (
+--        clk40           : in  std_logic;
+--        clk50           : in  std_logic;
+--        LTU0            : in  std_logic;
+--        LTU1            : in  std_logic;
+--        LTU2            : in  std_logic;
+--        LTU3            : in  std_logic;
+--        LTU4            : in  std_logic;
+--        LTU5            : in  std_logic;
+--        LTU_TRIGGER     : in  std_logic;
+--        RUN             : in  std_logic;
+--        timestamp       : out std_logic_vector(31 downto 0);
+--        triggerword     : out std_logic_vector(5 downto 0);
+--        numberoftrigger : out std_logic_vector(24 downto 0);
+--        received        : out std_logic
+--        );
+--  end component;
 
+
+  signal s_resetn         : std_logic;
 --PLL SIGNALS-----------------
   signal pll_c0           : std_logic;
   signal pll_locked       : std_logic;
@@ -95,7 +97,6 @@ architecture rtl of Controller is
 
   type FSM_tstmp is (idle, sob, run, eob);
   signal state             : FSM_tstmp;
-  signal s_readdata        : std_logic;
   signal s_RUN             : std_logic;
 ------------------------------------------------
   signal mdio_sin          : std_logic_vector(0 to 3);
@@ -146,7 +147,7 @@ begin
   RANDOM_INST : random port map
     (
       clk           => pll_c0,          --40 MHz
-      reset         => not(resetn),
+      reset         => not(resetn), 
       RUN           => s_RUN,
       validateCHOKE => CHOKE,
       validateERROR => error
@@ -156,23 +157,23 @@ begin
 -- know the trigger timestamp sent to the LTU. the output is sent to the
 -- ethlink module which sends the results to a workstation via UDP.
 
-  TRIGGER_INST : trigger_input port map
-    (
-      clk40           => pll_c0,
-      clk50           => OSCILL_50,
-      LTU0            => LTU0,
-      LTU1            => LTU1,
-      LTU2            => LTU2,
-      LTU3            => LTU3,
-      LTU4            => LTU4,
-      LTU5            => LTU5,
-      LTU_TRIGGER     => LTU_TRIGGER,
-      RUN             => s_RUN,
-      timestamp       => s_timestamp,
-      triggerword     => s_triggerword,
-      numberoftrigger => s_numberoftrigger,
-      received        => s_received
-      );
+ --  TRIGGER_INST : trigger_input port map
+ --    (
+ --      clk40           => pll_c0,
+ --      clk50           => OSCILL_50,
+ --      LTU0            => LTU0,
+ --      LTU1            => LTU1,
+ --      LTU2            => LTU2,
+ --      LTU3            => LTU3,
+ --      LTU4            => LTU4,
+ --      LTU5            => LTU5,
+ --      LTU_TRIGGER     => LTU_TRIGGER,
+ --      RUN             => s_RUN,
+ --      timestamp       => s_timestamp,
+ --      triggerword     => s_triggerword,
+ --      numberoftrigger => s_numberoftrigger,
+ --      received        => s_received
+ --      );
 
 --This module manages the ethernet output to the L0TP or to a workstation.
 --The first 3 ethernet ports send primitives to L0TP reading them from
@@ -198,7 +199,7 @@ begin
   ethlink_inst : ethlink port map
     (
       inputs.clkin_50   => OSCILL_50,
-      inputs.cpu_resetn => resetn,
+      inputs.cpu_resetn => s_resetn,
       inputs.enet_rxp   => ETH_RX_p(0 to ethlink_NODES-1),
       inputs.mdio_sin   => mdio_sin(0 to ethlink_NODES-1),
       inputs.USER_DIPSW => SW,
@@ -208,11 +209,11 @@ begin
       inputs.sw2        => sw2,
       inputs.sw3        => sw3,
 
-      inputs.timestamp       => s_timestamp,
-      inputs.numberoftrigger => s_numberoftrigger,
-      inputs.triggerword     => s_triggerword,
-      inputs.received        => s_received,
-
+--    inputs.timestamp       => s_timestamp,
+--    inputs.numberoftrigger => s_numberoftrigger,
+--    inputs.triggerword     => s_triggerword,
+--    inputs.received        => s_received,
+--
       outputs.enet_resetn => ETH_RST_n,
       outputs.enet_txp    => ETH_TX_p(0 to ethlink_NODES-1),
       outputs.enet_mdc    => ETH_MDC(0 to ethlink_NODES-1),
@@ -242,28 +243,23 @@ begin
       counter_INTERRUN <= (others => '0');
       counter_RUN      <= (others => '0');
       state            <= idle;
-      s_readdata       <= '0';
     elsif rising_edge(pll_c0) then
       case state is
         when idle =>
           counter_INTERRUN <= counter_INTERRUN +1;
           counter_RUN      <= (others => '0');
           if counter_INTERRUN > 400000000 then  --10 sec 
-            s_readdata <= '1';
             state      <= sob;
           else
-            s_readdata <= '0';
             state      <= idle;
           end if;
 
         when sob =>
           counter_INTERRUN <= (others => '0');
           state            <= run;
-          s_readdata       <= '0';
 
 
         when run =>
-          s_readdata  <= '0';
           counter_RUN <= counter_RUN +1;
           if counter_RUN > 200000000 then  --5 sec
             state <= eob;
@@ -272,7 +268,6 @@ begin
           end if;
 
         when eob =>
-          s_readdata  <= '0';
           counter_RUN <= (others => '0');
           state       <= idle;
       end case;
@@ -288,32 +283,39 @@ begin
 --BCRST=0 and ECRST='0' => previous state
 --BCRST=1 and ECRST='0' => Not Permitted
 --
---
+--Add resetn: when trigger is in EOB, reset ethlink
 
   process (state)
   begin
-    s_RUN <= '0';
     case state is
       when idle =>
-        Led1  <= '1';                   -- inverse logic
+        Led1  <= '1';-- inverse logic
         BCRST <= '0';
         ECRST <= '0';
+        s_RUN <= '0';
+        s_resetn <= '1';
       when sob =>
         Led1  <= '0';
         ECRST <= '1';
         BCRST <= '1';
-
-      when run =>
         s_RUN <= '1';
+        s_resetn <= '1';
+      when run =>
         Led1  <= '0';
         BCRST <= '0';
         ECRST <= '0';
+        s_RUN <= '1';
+        s_resetn <= '1';
       when eob =>
-        Led1  <= '1';
-        ECRST <= '1';
-        BCRST <= '0';
+        Led1     <= '1';
+        ECRST    <= '1';
+        BCRST    <= '0';
+        s_RUN    <= '0';
+        s_resetn <= '0';
     end case;
   end process;
 
+ 
 
+  
 end rtl;

@@ -1,4 +1,4 @@
-// (C) 2001-2016 Intel Corporation. All rights reserved.
+// (C) 2001-2017 Intel Corporation. All rights reserved.
 // Your use of Intel Corporation's design tools, logic functions and other 
 // software and tools, and its AMPP partner logic functions, and any output 
 // files any of the foregoing (including device programming or simulation 
@@ -20,7 +20,7 @@
 // Altera Identification hub
 //
 // Parameters
-//   DESIGN_HASH   : 885b4f679ef382d9f9ea
+//   DESIGN_HASH   : bef4370a5317bd84e989
 //   COUNT         : 1
 //   ROM_WIDTHS    : 4
 //   LATENCIES     : 0
@@ -39,7 +39,7 @@ module alt_sld_fab_alt_sld_fab_ident
 );
 
 
-wire [127:0] data_0 = { mixed, 12'h0, 32'h0, 80'h885b4f679ef382d9f9ea };
+wire [127:0] data_0 = { mixed, 12'h0, 32'h0, 80'hbef4370a5317bd84e989 };
 
 reg [3:0] result_0;
 always @(address_0 or data_0) begin
