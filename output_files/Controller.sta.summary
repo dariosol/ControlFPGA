@@ -2,64 +2,84 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Setup 'input_clock_125'
+Slack : -2.911
+TNS   : -2170.643
+
 Type  : Setup 'OSCILL_50'
-Slack : 0.231
+Slack : 18.247
 TNS   : 0.000
 
 Type  : Setup 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 20.817
+Slack : 20.514
 TNS   : 0.000
 
 Type  : Setup 'altera_reserved_tck'
-Slack : 45.396
+Slack : 46.394
+TNS   : 0.000
+
+Type  : Hold 'input_clock_125'
+Slack : 0.186
 TNS   : 0.000
 
 Type  : Hold 'OSCILL_50'
-Slack : 0.183
-TNS   : 0.000
-
-Type  : Hold 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.242
+Slack : 0.234
 TNS   : 0.000
 
 Type  : Hold 'altera_reserved_tck'
-Slack : 0.311
+Slack : 0.277
 TNS   : 0.000
+
+Type  : Hold 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.325
+TNS   : 0.000
+
+Type  : Recovery 'input_clock_125'
+Slack : -1.465
+TNS   : -5.201
 
 Type  : Recovery 'OSCILL_50'
-Slack : 1.118
-TNS   : 0.000
+Slack : -1.226
+TNS   : -10.303
 
 Type  : Recovery 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 3.250
+Slack : 23.152
 TNS   : 0.000
 
 Type  : Recovery 'altera_reserved_tck'
-Slack : 92.860
+Slack : 93.758
 TNS   : 0.000
 
-Type  : Removal 'OSCILL_50'
-Slack : 0.442
-TNS   : 0.000
-
-Type  : Removal 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.491
+Type  : Removal 'input_clock_125'
+Slack : 0.329
 TNS   : 0.000
 
 Type  : Removal 'altera_reserved_tck'
-Slack : 0.511
+Slack : 0.560
+TNS   : 0.000
+
+Type  : Removal 'OSCILL_50'
+Slack : 0.714
+TNS   : 0.000
+
+Type  : Removal 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 1.200
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'input_clock_125'
+Slack : 3.111
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'OSCILL_50'
-Slack : 9.086
+Slack : 9.419
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 11.714
+Slack : 11.951
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'altera_reserved_tck'
-Slack : 49.257
+Slack : 49.269
 TNS   : 0.000
 
 ------------------------------------------------------------

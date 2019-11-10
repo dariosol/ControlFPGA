@@ -1,0 +1,68 @@
+// @(#)root/fpga
+// Author: Alberto Perro 2019
+// TO RUN compile library: gSystem->CompileMacro("TPrimitive.cc","kg")
+#include <stdio.h>
+#include "TFile.h"
+#include "TTree.h"
+#include "TBranch.h"
+#include "TTreeReader.h"
+#include "TTreeReaderValue.h"
+#include "TString.h"
+#include "TPrimitive.hh"
+using namespace std;
+
+int rootToMif(TString file_path, TString Det){
+  TFile* file = new TFile(file_path);
+  TTree* Detector = 0;
+  TString outFile= "./exportHIGH_" + Det + ".mif";
+  cout<<"Creating file "<<outFile<<endl;
+
+  file->GetObject(Det,Detector);
+
+  if(Detector) {  
+    cout<<"Found tree, start scanning"<<endl;
+    
+    FILE * mifDump = fopen(outFile,"w");
+    fprintf(mifDump,"DEPTH = 32768;\n");
+    fprintf(mifDump,"WIDTH = 64;\n");
+    fprintf(mifDump,"ADDRESS_RADIX = HEX;\nDATA_RADIX = HEX;\nCONTENT\nBEGIN\n");
+
+    //It works with:
+    //    UInt_t offsetDet = 28031364; //timestamp 140000007
+    //if(Det=="RICH") offsetDet = 23580566; //timestamp 140000003
+
+
+    UInt_t offsetDet = 46151267; //timestamp 198300001
+    if(Det=="RICH") offsetDet = 39919209; //timestamp 198300001
+
+    
+    TPrimitive* Primitive = new TPrimitive();
+    TBranch *test = Detector->GetBranch("fPrimitive");
+    test->SetAddress(&Primitive);
+
+    printf("Total number of primitives: %lld",test->GetEntries());
+
+    Detector->GetEntry(offsetDet);
+
+    UInt_t timeOff = (Primitive->GetTimeStamp()) >> 8;
+
+    printf("\n Time offset: %0.6X",timeOff);
+    
+    for (UInt_t iEntry=0; iEntry<=0x7FFF; iEntry++) {
+
+      Detector->GetEntry(iEntry+offsetDet);
+      UInt_t timestampL = ((Primitive->GetTimeStamp()) & 0x00FF);
+      UInt_t timestamp = Primitive->GetTimeStamp() - (timeOff << 8);
+      fprintf(mifDump,"%X : %.4X%.2X%.2X%.8X;\n",iEntry,Primitive->GetPrimitiveID(),timestampL,Primitive->GetFineTime(), timestamp);
+    }
+    
+    fprintf(mifDump,"END;");
+    fclose(mifDump);
+    printf("\nMemory init file has been written");
+    return 0;
+  }
+  else {
+    printf("Can't find Detector tree");
+    return -1;
+  }
+}
