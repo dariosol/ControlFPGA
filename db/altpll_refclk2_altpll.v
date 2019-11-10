@@ -1,12 +1,12 @@
 //altpll bandwidth_type="AUTO" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" clk0_divide_by=2 clk0_duty_cycle=50 clk0_multiply_by=5 clk0_phase_shift="0" compensate_clock="CLK0" device_family="Stratix IV" inclk0_input_frequency=20000 intended_device_family="Stratix IV" lpm_hint="CBX_MODULE_PREFIX=altpll_refclk2" operation_mode="normal" pll_type="AUTO" port_clk0="PORT_USED" port_clk1="PORT_UNUSED" port_clk2="PORT_UNUSED" port_clk3="PORT_UNUSED" port_clk4="PORT_UNUSED" port_clk5="PORT_UNUSED" port_clk6="PORT_UNUSED" port_clk7="PORT_UNUSED" port_clk8="PORT_UNUSED" port_clk9="PORT_UNUSED" port_inclk1="PORT_UNUSED" port_phasecounterselect="PORT_UNUSED" port_phasedone="PORT_UNUSED" port_scandata="PORT_UNUSED" port_scandataout="PORT_UNUSED" self_reset_on_loss_lock="OFF" using_fbmimicbidir_port="OFF" width_clock=10 areset clk inclk locked CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
-//VERSION_BEGIN 16.1 cbx_altclkbuf 2016:10:19:21:26:20:SJ cbx_altiobuf_bidir 2016:10:19:21:26:20:SJ cbx_altiobuf_in 2016:10:19:21:26:20:SJ cbx_altiobuf_out 2016:10:19:21:26:20:SJ cbx_altpll 2016:10:19:21:26:20:SJ cbx_cycloneii 2016:10:19:21:26:20:SJ cbx_lpm_add_sub 2016:10:19:21:26:20:SJ cbx_lpm_compare 2016:10:19:21:26:20:SJ cbx_lpm_counter 2016:10:19:21:26:20:SJ cbx_lpm_decode 2016:10:19:21:26:20:SJ cbx_lpm_mux 2016:10:19:21:26:20:SJ cbx_mgl 2016:10:19:22:10:30:SJ cbx_nadder 2016:10:19:21:26:20:SJ cbx_stratix 2016:10:19:21:26:20:SJ cbx_stratixii 2016:10:19:21:26:20:SJ cbx_stratixiii 2016:10:19:21:26:20:SJ cbx_stratixv 2016:10:19:21:26:20:SJ cbx_util_mgl 2016:10:19:21:26:20:SJ  VERSION_END
+//VERSION_BEGIN 16.1 cbx_altclkbuf 2017:01:11:18:30:33:SJ cbx_altiobuf_bidir 2017:01:11:18:30:33:SJ cbx_altiobuf_in 2017:01:11:18:30:33:SJ cbx_altiobuf_out 2017:01:11:18:30:33:SJ cbx_altpll 2017:01:11:18:30:33:SJ cbx_cycloneii 2017:01:11:18:30:33:SJ cbx_lpm_add_sub 2017:01:11:18:30:33:SJ cbx_lpm_compare 2017:01:11:18:30:33:SJ cbx_lpm_counter 2017:01:11:18:30:33:SJ cbx_lpm_decode 2017:01:11:18:30:33:SJ cbx_lpm_mux 2017:01:11:18:30:33:SJ cbx_mgl 2017:01:11:19:37:47:SJ cbx_nadder 2017:01:11:18:30:33:SJ cbx_stratix 2017:01:11:18:30:33:SJ cbx_stratixii 2017:01:11:18:30:33:SJ cbx_stratixiii 2017:01:11:18:30:33:SJ cbx_stratixv 2017:01:11:18:30:33:SJ cbx_util_mgl 2017:01:11:18:30:33:SJ  VERSION_END
 //CBXI_INSTANCE_NAME="Controller_ethlink_ethlink_inst_pll_refclk2_PLL_altpll_refclk2_altpll_refclk2_inst_altpll_altpll_component"
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
 // altera message_off 10463
 
 
 
-// Copyright (C) 2016  Intel Corporation. All rights reserved.
+// Copyright (C) 2017  Intel Corporation. All rights reserved.
 //  Your use of Intel Corporation's design tools, logic functions 
 //  and other software and tools, and its AMPP partner logic 
 //  functions, and any output files from any of the foregoing 

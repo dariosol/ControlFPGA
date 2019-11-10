@@ -11,25 +11,31 @@
 #include "TPrimitive.hh"
 using namespace std;
 
-int rootToMif(TString file_path){
+int rootToMif(TString file_path, UInt_t offset){
   TFile* file = new TFile(file_path);
   TTree* IRC = 0;
   file->GetObject("IRC",IRC);
   if(IRC){
-    FILE * mifDump = fopen("./exportIRC.mif","w");
+    FILE * mifDump = fopen("./exportHIGH.mif","w");
     fprintf(mifDump,"DEPTH = 32768;\n");
     fprintf(mifDump,"WIDTH = 64;\n");
     fprintf(mifDump,"ADDRESS_RADIX = HEX;\nDATA_RADIX = HEX;\nCONTENT\nBEGIN\n");
     TPrimitive* Primitive = new TPrimitive();
     TBranch *test = IRC->GetBranch("fPrimitive");
     test->SetAddress(&Primitive);
-    for (UInt_t iEntry=0; iEntry<0xFFFF; iEntry++) {
-      IRC->GetEntry(iEntry);
-      fprintf(mifDump,"%X : %.4X00%.2X%.8X;\n",iEntry,Primitive->GetPrimitiveID(),Primitive->GetFineTime(), Primitive->GetTimeStamp());
+    printf("Total number of primitives: %lld",test->GetEntries());
+    IRC->GetEntry(offset);
+    UInt_t timeOff = (Primitive->GetTimeStamp()) >> 8;
+    printf("\n Time offset: %0.6X",timeOff);
+    for (UInt_t iEntry=0; iEntry<=0x7FFF; iEntry++) {
+      IRC->GetEntry(iEntry+offset);
+      UInt_t timestampL = ((Primitive->GetTimeStamp()) & 0x00FF);
+      UInt_t timestamp = Primitive->GetTimeStamp() - (timeOff << 8);
+      fprintf(mifDump,"%X : %.4X%.2X%.2X%.8X;\n",iEntry,Primitive->GetPrimitiveID(),timestampL,Primitive->GetFineTime(), timestamp);
     }
     fprintf(mifDump,"END;");
     fclose(mifDump);
-    printf("Memory init file has been written");
+    printf("\nMemory init file has been written");
     return 0;
   }else{
     printf("Can't find IRC tree");

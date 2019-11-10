@@ -1,8 +1,8 @@
 --a_gray2bin carry_chain="MANUAL" carry_chain_length=48 device_family="Stratix IV" ignore_carry_buffers="OFF" WIDTH=13 bin gray
---VERSION_BEGIN 16.1 cbx_a_gray2bin 2016:10:19:21:26:20:SJ cbx_mgl 2016:10:19:22:10:30:SJ  VERSION_END
+--VERSION_BEGIN 16.1 cbx_a_gray2bin 2017:01:11:18:30:33:SJ cbx_mgl 2017:01:11:19:37:47:SJ  VERSION_END
 
 
--- Copyright (C) 2016  Intel Corporation. All rights reserved.
+-- Copyright (C) 2017  Intel Corporation. All rights reserved.
 --  Your use of Intel Corporation's design tools, logic functions 
 --  and other software and tools, and its AMPP partner logic 
 --  functions, and any output files from any of the foregoing 

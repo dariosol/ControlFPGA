@@ -1,21 +1,22 @@
 
 # DO NOT DELETE
 
-TPrimitive_cc.so: /home/albertoperro/build/include/Riostream.h TPrimitive.hh
-TPrimitive_cc.so: /home/albertoperro/build/include/TObject.h
-TPrimitive_cc.so: /home/albertoperro/build/include/RConfigure.h
-TPrimitive_cc.so: /home/albertoperro/build/include/Rtypes.h
-TPrimitive_cc.so: /home/albertoperro/build/include/RtypesCore.h
-TPrimitive_cc.so: /home/albertoperro/build/include/RConfig.h
-TPrimitive_cc.so: /home/albertoperro/build/include/RVersion.h
-TPrimitive_cc.so: /home/albertoperro/build/include/DllImport.h
-TPrimitive_cc.so: /home/albertoperro/build/include/snprintf.h
-TPrimitive_cc.so: /home/albertoperro/build/include/strlcpy.h
-TPrimitive_cc.so: /home/albertoperro/build/include/TGenericClassInfo.h
-TPrimitive_cc.so: /home/albertoperro/build/include/TSchemaHelper.h
-TPrimitive_cc.so: /home/albertoperro/build/include/TIsAProxy.h
-TPrimitive_cc.so: /home/albertoperro/build/include/TVirtualIsAProxy.h
-TPrimitive_cc.so: /home/albertoperro/build/include/TStorage.h
-TPrimitive_cc.so: /home/albertoperro/build/include/TVersionCheck.h
-TPrimitive_cc.so: /home/albertoperro/build/include/RVersion.h /home/albertoperro/build/include/RConfig.h /home/albertoperro/build/include/TClass.h /home/albertoperro/build/include/TDictAttributeMap.h /home/albertoperro/build/include/TInterpreter.h /home/albertoperro/build/include/TROOT.h /home/albertoperro/build/include/TBuffer.h /home/albertoperro/build/include/TMemberInspector.h /home/albertoperro/build/include/TError.h /home/albertoperro/build/include/RtypesImp.h /home/albertoperro/build/include/TIsAProxy.h /home/albertoperro/build/include/TFileMergeInfo.h /home/albertoperro/build/include/TCollectionProxyInfo.h /home/albertoperro/build/bin/rootcling
-TPrimitive_cc__ROOTBUILDVERSION= 6.12/04
+TPrimitive_cc.so: /home/albertoperro/root/include/Riostream.h TPrimitive.hh
+TPrimitive_cc.so: /home/albertoperro/root/include/TObject.h
+TPrimitive_cc.so: /home/albertoperro/root/include/RConfigure.h
+TPrimitive_cc.so: /home/albertoperro/root/include/Rtypes.h
+TPrimitive_cc.so: /home/albertoperro/root/include/RtypesCore.h
+TPrimitive_cc.so: /home/albertoperro/root/include/ROOT/RConfig.hxx
+TPrimitive_cc.so: /home/albertoperro/root/include/RVersion.h
+TPrimitive_cc.so: /home/albertoperro/root/include/DllImport.h
+TPrimitive_cc.so: /home/albertoperro/root/include/snprintf.h
+TPrimitive_cc.so: /home/albertoperro/root/include/strlcpy.h
+TPrimitive_cc.so: /home/albertoperro/root/include/TGenericClassInfo.h
+TPrimitive_cc.so: /home/albertoperro/root/include/TSchemaHelper.h
+TPrimitive_cc.so: /home/albertoperro/root/include/TIsAProxy.h
+TPrimitive_cc.so: /home/albertoperro/root/include/TVirtualIsAProxy.h
+TPrimitive_cc.so: /home/albertoperro/root/include/TStorage.h
+TPrimitive_cc.so: /home/albertoperro/root/include/TVersionCheck.h
+TPrimitive_cc.so: /home/albertoperro/root/include/RVersion.h
+TPrimitive_cc.so: /home/albertoperro/root/include/RVersion.h /home/albertoperro/root/include/RConfig.h /home/albertoperro/root/include/TClass.h /home/albertoperro/root/include/TDictAttributeMap.h /home/albertoperro/root/include/TInterpreter.h /home/albertoperro/root/include/TROOT.h /home/albertoperro/root/include/TBuffer.h /home/albertoperro/root/include/TMemberInspector.h /home/albertoperro/root/include/TError.h /home/albertoperro/root/include/RtypesImp.h /home/albertoperro/root/include/TIsAProxy.h /home/albertoperro/root/include/TFileMergeInfo.h /home/albertoperro/root/include/TCollectionProxyInfo.h /home/albertoperro/root/bin/rootcling
+TPrimitive_cc__ROOTBUILDVERSION= 6.18/04

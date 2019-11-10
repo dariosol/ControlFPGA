@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="alt_sld_fab" kind="alt_sld_fab" version="1.0" fabric="QSYS">
- <!-- Format version 16.1 196 (Future versions may contain additional information.) -->
- <!-- 2019.03.19.18:07:16 -->
+ <!-- Format version 16.1 203 (Future versions may contain additional information.) -->
+ <!-- 2019.07.15.14:16:21 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_DEVICE_FAMILY">
   <type>java.lang.String</type>
@@ -56,7 +56,7 @@
 the requested settings for a module instance. -->
   <parameter name="DESIGN_HASH">
    <type>java.lang.String</type>
-   <value>885b4f679ef382d9f9ea</value>
+   <value>bef4370a5317bd84e989</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1627,7 +1627,7 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <parameter name="DESIGN_HASH">
    <type>java.lang.String</type>
-   <value>885b4f679ef382d9f9ea</value>
+   <value>bef4370a5317bd84e989</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -2133,6 +2133,6 @@ parameters are a RESULT of the module parameters. -->
   <displayName>Clock Connection</displayName>
   <version>16.1</version>
  </plugin>
- <reportVersion>16.1 196</reportVersion>
+ <reportVersion>16.1 203</reportVersion>
  <uniqueIdentifier></uniqueIdentifier>
 </EnsembleReport>
