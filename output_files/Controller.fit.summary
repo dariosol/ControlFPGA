@@ -1,4 +1,4 @@
-Fitter Status : Successful - Mon Jul 15 14:22:32 2019
+Fitter Status : Successful - Tue Nov 19 16:43:03 2019
 Quartus Prime Version : 16.1.2 Build 203 01/18/2017 SJ Standard Edition
 Revision Name : Controller
 Top-level Entity Name : Controller
@@ -6,10 +6,10 @@ Family : Stratix IV
 Device : EP4SGX230KF40C2
 Timing Models : Final
 Logic utilization : 15 %
-    Combinational ALUTs : 15,831 / 182,400 ( 9 % )
+    Combinational ALUTs : 15,828 / 182,400 ( 9 % )
     Memory ALUTs : 70 / 91,200 ( < 1 % )
-    Dedicated logic registers : 21,632 / 182,400 ( 12 % )
-Total registers : 21632
+    Dedicated logic registers : 21,629 / 182,400 ( 12 % )
+Total registers : 21629
 Total pins : 80 / 888 ( 9 % )
 Total virtual pins : 0
 Total block memory bits : 6,442,272 / 14,625,792 ( 44 % )

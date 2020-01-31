@@ -3,19 +3,19 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Setup 'input_clock_125'
-Slack : -2.911
-TNS   : -2170.643
-
-Type  : Setup 'OSCILL_50'
-Slack : 18.247
-TNS   : 0.000
+Slack : -2.964
+TNS   : -2160.426
 
 Type  : Setup 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 20.514
+Slack : 19.080
+TNS   : 0.000
+
+Type  : Setup 'OSCILL_50'
+Slack : 19.313
 TNS   : 0.000
 
 Type  : Setup 'altera_reserved_tck'
-Slack : 46.394
+Slack : 45.287
 TNS   : 0.000
 
 Type  : Hold 'input_clock_125'
@@ -23,59 +23,59 @@ Slack : 0.186
 TNS   : 0.000
 
 Type  : Hold 'OSCILL_50'
-Slack : 0.234
-TNS   : 0.000
-
-Type  : Hold 'altera_reserved_tck'
-Slack : 0.277
+Slack : 0.233
 TNS   : 0.000
 
 Type  : Hold 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.325
+Slack : 0.302
+TNS   : 0.000
+
+Type  : Hold 'altera_reserved_tck'
+Slack : 0.310
 TNS   : 0.000
 
 Type  : Recovery 'input_clock_125'
-Slack : -1.465
-TNS   : -5.201
+Slack : -1.595
+TNS   : -6.510
 
 Type  : Recovery 'OSCILL_50'
-Slack : -1.226
-TNS   : -10.303
+Slack : -1.011
+TNS   : -10.247
 
 Type  : Recovery 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 23.152
+Slack : 21.178
 TNS   : 0.000
 
 Type  : Recovery 'altera_reserved_tck'
-Slack : 93.758
+Slack : 95.444
 TNS   : 0.000
 
 Type  : Removal 'input_clock_125'
-Slack : 0.329
+Slack : 0.443
 TNS   : 0.000
 
 Type  : Removal 'altera_reserved_tck'
-Slack : 0.560
+Slack : 0.549
 TNS   : 0.000
 
 Type  : Removal 'OSCILL_50'
-Slack : 0.714
+Slack : 0.701
 TNS   : 0.000
 
 Type  : Removal 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 1.200
+Slack : 1.578
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'input_clock_125'
-Slack : 3.111
+Slack : 3.127
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'OSCILL_50'
-Slack : 9.419
+Slack : 9.421
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'PLL_INST|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 11.951
+Slack : 11.952
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'altera_reserved_tck'
